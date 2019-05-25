@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations":
+    [
+        {
+            
+            "name": "debug",
+            "type": "gdb",
+            "gdbpath": "${env:DEVKITARM}/bin/arm-none-eabi-gdb",
+            "request": "attach",
+            "executable": "output.elf",
+            "target": "localhost:2345",
+            "remote": true,
+            "cwd": "${workspaceRoot}",
+            "valuesFormatting": "parseText",
+            "preLaunchTask": "debugRun",
+            "postDebugTask": "debugKill"
+        }
+    ]
+}

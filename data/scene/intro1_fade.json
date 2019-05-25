@@ -1,0 +1,28 @@
+{
+    "palette":
+    [
+        "BACKGROUND",
+        {"file": "intro1_bg", "position": 0},
+        "OBJECT",
+        {"file": "intro1_tiles1", "tag": 100},
+        {"file": "intro1_tiles2", "tag": 101},
+        {"file": "intro1_eon", "tag": 300}
+    ],
+    "tile":
+    [
+        "BACKGROUND",
+        {"file": "intro1_bg", "char": 0},
+        "OBJECT",
+        {"file": "intro1_tiles", "tag": 100},
+        {"file": "intro1_eon", "tag": 300}
+    ],
+    "background":
+    [
+        "LEAVES",
+        {"file": "intro1_bg0", "position": 0, "priority": 0, "char": 0, "map": 16, "size": 2, "y": 40},
+        {"file": "intro1_bg1", "position": 1, "priority": 1, "char": 0, "map": 18, "size": 2, "y": 24},
+        {"file": "intro1_bg2", "position": 2, "priority": 2, "char": 0, "map": 20, "size": 2, "y": 80},
+        "MOUTAINS",
+        {"file": "intro1_bg3", "position": 3, "priority": 3, "char": 0, "map": 22, "size": 2}
+    ]
+}

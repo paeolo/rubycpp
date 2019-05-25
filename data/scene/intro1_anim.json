@@ -1,0 +1,57 @@
+{
+    "palette":
+    [
+        "WATER FADE",
+        { "copy": true, "position": 16, "destination": 25, "offset": 6},
+        { "copy": true, "position": 16, "destination": 26, "offset": 5},
+        { "copy": true, "position": 16, "destination": 27, "offset": 4},
+        { "copy": true, "position": 16, "destination": 28, "offset": 3},
+        { "copy": true, "position": 16, "destination": 29, "offset": 2},
+        { "copy": true, "position": 16, "destination": 30, "offset": 1},
+        { "copy": true, "position": 16, "destination": 31, "offset": 0}
+    ],
+    "sprite":
+    [
+        "LATIOS SPRITE",
+        {"tag": 300, "palette": 300, "tile": 300, "tileoffset": 0, "x": 200, "y": 160},
+        "WATER SPRITE 1",
+        {"tag": 100, "palette": 100, "tile": 100, "tileoffset": 0, "x": 234, "y": -12},
+        {"tag": 101, "palette": 100, "tile": 100, "tileoffset": 16, "parent": 100},
+        {"tag": 102, "palette": 100, "tile": 100, "tileoffset": 24, "parent": 100},
+        "WATER SPRITE 2",
+        {"tag": 103, "palette": 100, "tile": 100, "tileoffset": 0, "x": 48, "y": -12},
+        {"tag": 104, "palette": 100, "tile": 100, "tileoffset": 16, "parent": 103},
+        {"tag": 105, "palette": 100, "tile": 100, "tileoffset": 24, "parent": 103},
+        "WATER SPRITE 3",
+        {"tag": 106, "palette": 100, "tile": 100, "tileoffset": 0, "x": 200, "y": -12},
+        {"tag": 107, "palette": 100, "tile": 100, "tileoffset": 16, "parent": 106},
+        {"tag": 108, "palette": 100, "tile": 100, "tileoffset": 24, "parent": 106}
+       
+    ],
+    "animation":
+    [
+        "WATERDROP 1",
+        { "anim": 0, "sprite": 100, "begin": 60 },
+        { "anim": 1, "sprite": 100, "begin": 180, "prempt": true},
+        { "anim": 2, "sprite": 100, "begin": 340, "prempt": true},
+        { "anim": 4, "sprite": 100, "next": true},
+        { "anim": 4, "sprite": 101, "delay": 8},
+        { "anim": 4, "sprite": 102, "delay": 8},
+        "WATERDROP 2",
+        { "anim": 3, "sprite": 103, "begin": 400},
+        { "anim": 4, "sprite": 103, "next": true},
+        { "anim": 4, "sprite": 104, "delay": 8},
+        { "anim": 4, "sprite": 105, "delay": 8},
+        "WATERDROP 3",
+        { "anim": 3, "sprite": 106, "begin": 410},
+        { "anim": 4, "sprite": 106, "next": true},
+        { "anim": 4, "sprite": 107, "delay": 8},
+        { "anim": 4, "sprite": 108, "delay": 8},
+        "GAMEFREAK LOGO",
+        { "anim": 5, "delay": 60},
+        "SCROLL BACKGROUND",
+        { "anim": 6, "delay": 60},
+        "LATIOS FLIGHT",
+        { "anim": 7, "sprite": 300, "delay": 140}
+    ]
+}

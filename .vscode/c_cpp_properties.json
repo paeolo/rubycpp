@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${env:DEVKITARM}/arm-none-eabi/include",
+                "${env:DEVKITARM}/lib/gcc/arm-none-eabi/8.3.0/include",
+                "${env:DEVKITPRO}/libgba/include",
+                "/opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/8.3.0/include"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}

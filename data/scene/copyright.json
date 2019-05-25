@@ -1,0 +1,17 @@
+{
+    "palette":
+    [
+        "COPYRIGHT",
+        {"file": "copyright", "position": 0}
+    ],
+    "tile":
+    [
+        "COPYRIGHT",
+        {"file": "copyright", "char": 0}
+    ],
+    "background":
+    [
+        "COPYRIGHT",
+        { "file": "copyright", "position": 0, "priority": 0, "char": 0, "map": 7}
+    ]
+}

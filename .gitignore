@@ -1,0 +1,6 @@
+# Build
+build
+output.*
+
+#VScode
+.vscode/ipch
