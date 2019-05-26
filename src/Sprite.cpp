@@ -23,11 +23,11 @@ void Sprite::Flush()
     dma::Copy16(3, &Sprite::buffer, &OAM_RAM, OAM_SIZE);
 }
 
-Sprite::Sprite(int tag, int paletteTag, int tileTag): Sprite()
+Sprite::Sprite(int tag, int paletteNum, int tileNum): Sprite()
 {
     this->_tag = tag;
-    entry.paletteNum = allocator.getPalette(paletteTag);
-    this->_tile = allocator.getTile(tileTag);
+    entry.paletteNum = paletteNum;
+    this->_tile = tileNum;
 }
 
 Sprite::~Sprite()

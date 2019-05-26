@@ -8,7 +8,8 @@ const anim_t anim[] =
     anim_waterdrop_fall,
     anim_waterdrop_fall_immediatly,
     anim_waterdrop_splash,
-    anim_gamefreak_logo,
+    anim_gamefreak_logo_appear,
+    anim_gamefreak_logo_disappear,
     anim_scroll_down,
     anim_latios_flight
 };

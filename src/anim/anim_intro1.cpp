@@ -144,15 +144,15 @@ bool anim_waterdrop_splash(Animation* animation, anim_param_t &param)
     {
         --param.count;
     }
-    else if (param.gamma > Fixed(0.75))
+    else if (param.gamma >= Fixed(0.75))
     {
         if(!sprite->visible)
             sprite->visible = true;
 
         sprite->scale(param.gamma, param.gamma);
-        param.gamma = Fixed(0.95) * param.gamma;
         int palette = 9 + 2*(param.gamma - Fixed(0.75));
         sprite->entry.paletteNum = (palette > 15) ? 15 : palette;
+        param.gamma = Fixed(0.95) * param.gamma;
     }
     else
     {
@@ -164,7 +164,7 @@ bool anim_waterdrop_splash(Animation* animation, anim_param_t &param)
     return false;
 }
 
-bool anim_gamefreak_logo(Animation* animation, anim_param_t &param)
+bool anim_gamefreak_logo_appear(Animation* animation, anim_param_t &param)
 {
     static const s16 game_table[9][2] =
     {
@@ -220,30 +220,47 @@ bool anim_gamefreak_logo(Animation* animation, anim_param_t &param)
         object->update();
 
         param.count = 64;
-        param.lambda[0] = 64;
-        param.lambda[1] = 0;
         param.init = true;
     }
 
-    if (param.lambda[0] > 0)
-    {
-        --param.lambda[0];
-        LCD.BLDALPHA = alpha_blend[param.lambda[0]  >> 1];
-    }
-    else if (param.count > 0)
+    if (param.count > 0)
     {
         --param.count;
+        LCD.BLDALPHA = alpha_blend[param.count >> 1];
     }
-    else if(param.lambda[1] <= 64)
+    else
     {
-        if(param.lambda[1] < 64)
-            LCD.BLDALPHA = alpha_blend[param.lambda[1] >> 1];
+        return true;
+    }
+    return false;
+}
+
+bool anim_gamefreak_logo_disappear(Animation* animation, anim_param_t &param)
+{
+    static const u16 alpha_blend[32] =
+    {
+        16, 272, 528, 784, 1040, 1296, 1552, 1808, 2064,
+        2320, 2576, 2832, 3088, 3344, 3600, 3856, 4111,
+        4110, 4109, 4108, 4107, 4106, 4105, 4104, 4103,
+        4102, 4101, 4100, 4099, 4098, 4097, 4096
+    };
+
+    if(!param.init)
+    {
+        param.count = 0;
+        param.init = true;
+    }
+
+    if(param.count <= 64)
+    {
+        if(param.count < 64)
+            LCD.BLDALPHA = alpha_blend[param.count >> 1];
         else
         {
             for (int i = 0; i < 18; i++)
                 allocator.destroySprite(200 + i);
         }
-        ++param.lambda[1];
+        ++param.count;
     }
     else
     {

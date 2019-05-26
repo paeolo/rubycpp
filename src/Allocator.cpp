@@ -9,8 +9,8 @@ Sprite* Allocator::createSprite(int tag, int paletteTag, int tileTag)
         Sprite* sprite = new Sprite
         (
             tag,
-            paletteTag,
-            tileTag
+            this->getPalette(paletteTag),
+            this->getTile(tileTag)
         );
         sprite->setId(_spriteId);
         _sprite[tag] = sprite;

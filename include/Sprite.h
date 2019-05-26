@@ -89,7 +89,7 @@ class Sprite : public AffineObject
   public:
 		Sprite() = default;
 		~Sprite();
-		Sprite(int tag, int paletteTag, int tileTag);
+		Sprite(int tag, int paletteNum, int tileNum);
 
 		ObjectEntry entry = ObjectEntry();
 		int priority = 0;
