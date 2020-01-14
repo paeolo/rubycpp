@@ -1,21 +1,35 @@
 #include "Allocator.h"
 #include "Animation.h"
 
-Animation::Animation(int spriteTag, int animTag)
+Animation::Animation(int objectTag, int objectType, int animTag)
 {
-    _spriteTag = spriteTag;
+    _objectTag = objectTag;
+    _objectType = objectType;
     _anim = anim[animTag];
 }
 
 void Animation::init()
 {
-    if(_spriteTag)
-        this->sprite = allocator.getSprite(_spriteTag);
+    if (_objectTag != -1)
+    {
+        switch(_objectType)
+        {
+            case ObjectType::OBJECT_SPRITE:
+                object.sprite = Allocator::Sprite::getByTag(_objectTag);
+                break;
+            case ObjectType::OBJECT_SPRITE_GROUP:
+
+                object.group = Allocator::SpriteGroup::getByTag(_objectTag);
+                break;
+        }
+    }
+    if (parameter != -1)
+        _param.rho = parameter;
 }
 
 void Animation::routine()
 {
-    if(!_anim || _anim(this, _param))
+    if (_anim == nullptr || _anim(object, _param) == true)
         this->_end = true;
 }
 

@@ -4,17 +4,17 @@
         "BACKGROUND",
         {"file": "intro1_bg", "position": 0},
         "OBJECT",
-        {"file": "intro1_tiles1", "tag": 100},
-        {"file": "intro1_tiles2", "tag": 101},
-        {"file": "intro1_eon", "tag": 300}
+        {"file": "intro1_tiles1", "tag": 0},
+        {"file": "intro1_tiles2", "tag": 1},
+        {"file": "intro1_eon", "tag": 2}
     ],
     "tile":
     [
         "BACKGROUND",
         {"file": "intro1_bg", "char": 0},
         "OBJECT",
-        {"file": "intro1_tiles", "tag": 100},
-        {"file": "intro1_eon", "tag": 300}
+        {"file": "intro1_tiles", "tag": 0},
+        {"file": "intro1_eon", "tag": 1}
     ],
     "background":
     [

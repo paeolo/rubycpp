@@ -6,11 +6,12 @@
 #include <gba_interrupt.h>
 
 IWRAM_DATA Scene* Engine::scene;
+IWRAM_DATA Updater Engine::updater;
 IWRAM_DATA unsigned int VBlankCounter = 0;
 
 void Engine::pushScene(Scene* scene)
 {
-    this->_queue.push(scene);
+    _queue.push(scene);
 }
 
 void Engine::popScene()
@@ -22,7 +23,7 @@ void Engine::popScene()
     }
     if(!this->_queue.empty())
     {
-        Scene* scene = this->_queue.front();
+        Scene* scene = _queue.front();
         scene->init();
         Engine::scene = scene;
         this->_queue.pop();
@@ -48,13 +49,8 @@ void Engine::initInterrupt()
 
 void Engine::initOAM()
 {
-    ObjectEntry entry = ObjectEntry();
-    entry.x = 304;
-    entry.y = 160;
-    entry.affineMode = AFFINE_HIDDEN;
-    entry.priority = 3;
     for (int i = 0; i < 128; i++)
-        Sprite::buffer.Object[i] = entry;
+        Sprite::buffer.Object[i] = Sprite::emptyEntry;
 }
 
 void Engine::VBlankInterrupt()
@@ -63,6 +59,7 @@ void Engine::VBlankInterrupt()
     {
         Palette::Flush();
         Sprite::Flush();
+
     }
     if(VBlankCounter > 0)
         --VBlankCounter;

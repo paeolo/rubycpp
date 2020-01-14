@@ -2,8 +2,19 @@
 #define ANIM_JUMP_TABLE_H
 
 #define TAG(n) bool
+#define SPRITE object.sprite
+#define GROUP object.group
 
 #include "Fixed.h"
+#include "Sprite.h"
+#include "SpriteGroup.h"
+
+typedef union anim_object
+{
+    Sprite* sprite;
+    SpriteGroup* group;
+
+} anim_object_t;
 
 typedef struct anim_param
 {
@@ -19,7 +30,7 @@ typedef struct anim_param
 
 class Animation;
 
-typedef bool (*anim_t)(Animation* animation, anim_param_t &param);
+typedef bool (*anim_t)(anim_object_t &object, anim_param_t &param);
 extern const anim_t anim[];
 
 #endif

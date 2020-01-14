@@ -1,14 +1,16 @@
 {
     "version": "2.0.0",
-    "tasks":
-    [
+    "tasks": [
         {
             "label": "make",
             "type": "shell",
             "command": "make",
-            "problemMatcher": [
-                "$gcc"
-            ],
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": [
+                    "absolute"
+                ],
+            },
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -22,7 +24,9 @@
         {
             "label": "run",
             "type": "shell",
-            "dependsOn": ["make"],
+            "dependsOn": [
+                "make"
+            ],
             "command": "mgba-qt output.gba",
             "group": {
                 "kind": "test",
@@ -37,7 +41,9 @@
         {
             "label": "debugRun",
             "type": "shell",
-            "dependsOn": ["make"],
+            "dependsOn": [
+                "make"
+            ],
             "command": "mgba-qt -g output.elf",
             "presentation": {
                 "echo": false,
@@ -45,35 +51,39 @@
                 "clear": false
             },
             "isBackground": true,
-            "problemMatcher":
-            [{
-                "pattern":
-                [{
-                    "regexp": ".",
-                    "file": 1,
-                    "location": 2,
-                    "message": 3
-                }],
-                "background":
+            "problemMatcher": [
                 {
-                    "activeOnStart": true,
-                    "beginsPattern": ".",
-                    "endsPattern": ".",
+                    "pattern": [
+                        {
+                            "regexp": ".",
+                            "file": 1,
+                            "location": 2,
+                            "message": 3
+                        }
+                    ],
+                    "background": {
+                        "activeOnStart": true,
+                        "beginsPattern": ".",
+                        "endsPattern": ".",
+                    }
                 }
-            }]
+            ]
         },
         {
             "label": "debugKill",
-            "type": "process",
-            //"command": "${command:workbench.action.tasks.terminate}",
-            "command": "${input:terminate}",
-         },
+            "type": "shell",
+            "command": "killall",
+            "args": ["mgba-qt"]
+        },
     ],
-    "inputs":
-    [{
-        "id": "terminate",
-        "type": "command",
-        "command": "workbench.action.tasks.terminate",
-        "args": {"label": "debugRun"}
-    }]
+    "inputs": [
+        {
+            "id": "terminate",
+            "type": "command",
+            "command": "workbench.action.tasks.terminate",
+            "args": {
+                "label": "debugRun"
+            }
+        }
+    ]
 }

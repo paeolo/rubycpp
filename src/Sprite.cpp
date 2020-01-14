@@ -1,11 +1,29 @@
-#include "Allocator.h"
 #include "dma.h"
-#include "File.h"
-#include "Fixed.h"
-#include "Sprite.h"
 #include "trig.h"
 
+#include "Allocator.h"
+#include "Engine.h"
+#include "File.h"
+#include "Fixed.h"
+#include "Palette.h"
+#include "Sprite.h"
+
+#include "mgba.h"
+
 EWRAM_DATA OAM_t Sprite::buffer;
+IWRAM_DATA Sorter Sprite::sorter;
+
+IWRAM_DATA const ObjectEntry Sprite::emptyEntry = ObjectEntry::makeEmptyEntry();
+
+ObjectEntry ObjectEntry::makeEmptyEntry()
+{
+    ObjectEntry entry = ObjectEntry();
+    entry.x = 304;
+    entry.y = 160;
+    entry.affineMode = AFFINE_HIDDEN;
+    entry.priority = 3;
+    return entry;
+}
 
 int Sprite::LoadTile4(const char* tileName, int tileNumber)
 {
@@ -23,66 +41,82 @@ void Sprite::Flush()
     dma::Copy16(3, &Sprite::buffer, &OAM_RAM, OAM_SIZE);
 }
 
-Sprite::Sprite(int tag, int paletteNum, int tileNum): Sprite()
+void* Sprite::operator new(size_t size)
 {
-    this->_tag = tag;
+    return Allocator::Sprite::allocate();
+}
+
+void Sprite::operator delete(void* ptr)
+{
+    Allocator::Sprite::deallocate((Sprite*) ptr);
+}
+
+Sprite::Sprite(int paletteNum, int tileNum, int tag, bool insert_updater): Sprite()
+{
+    Sprite::sorter.insert(this);
     entry.paletteNum = paletteNum;
-    this->_tile = tileNum;
+    _tile = tileNum;
+    _tag = tag;
+    if(tag != -1)
+        Allocator::Sprite::setByTag(tag, this);
+    if(insert_updater)
+        Engine::updater.insert(this);
+    
 }
 
 Sprite::~Sprite()
 {
-    this->visible = false;
-    this->scale(1, 1);
-    this->update();
+    ObjectEntry entry = Sprite::emptyEntry;
+    entry.coefficient = buffer.Object[_id].coefficient;
+    buffer.Object[_id] = entry;
+    if (_tag != 1)
+        Allocator::Sprite::eraseTag(_tag);
+    if (_matrix >= 0)
+        Allocator::Matrix::deallocate(_matrix);
 }
 
 void Sprite::update()
 {
-    AffineObject::update();
-    if(this->visible)
+    update({0, 0});
+}
+
+void Sprite::update(pos_t offset)
+{
+    if (this->visible)
     {
         entry.tileNum = _tile + tileOffset;
-        entry.priority = priority;
-        entry.x = this->pos1.x + this->pos2.x + _center.x;
-        entry.y = this->pos1.y + this->pos2.y + _center.y;
+        mgba_printf("tileNum: %d", entry.tileNum);
+        entry.priority = _priority;
+        entry.x = this->pos1.x + this->pos2.x + offset.x + _center.x;
+        entry.y = this->pos1.y + this->pos2.y + offset.y + _center.y;
         entry.coefficient = buffer.Object[_id].coefficient;
-        buffer.Object[_id] = entry;
+        Sprite::buffer.Object[_id] = entry;
     }
     else
     {
-        ObjectEntry entry = ObjectEntry();
-        entry.x = 304;
-        entry.y = 160;
-        entry.affineMode = AFFINE_HIDDEN;
-        entry.priority = 3;
+        ObjectEntry entry = Sprite::emptyEntry;
         entry.coefficient = buffer.Object[_id].coefficient;
         buffer.Object[_id] = entry;
     }
-}
-
-void Sprite::destroy()
-{
-    allocator.destroySprite(_tag);
 }
 
 void Sprite::scale(Fixed a, Fixed b)
 {
-    buffer.Matrix[entry.matrixNum].A = a;
-    buffer.Matrix[entry.matrixNum].B = 0;
-    buffer.Matrix[entry.matrixNum].C = 0;
-    buffer.Matrix[entry.matrixNum].D = b;
+    buffer.Matrix[entry.matrix].A = a;
+    buffer.Matrix[entry.matrix].B = 0;
+    buffer.Matrix[entry.matrix].C = 0;
+    buffer.Matrix[entry.matrix].D = b;
 }
 
 void Sprite::rotate(Fixed a, Fixed b, int theta)
 {
-    buffer.Matrix[entry.matrixNum].A = a * Cos(theta);
-    buffer.Matrix[entry.matrixNum].B = a * Sin(theta);
-    buffer.Matrix[entry.matrixNum].C = -b * Sin(theta);
-    buffer.Matrix[entry.matrixNum].D = b * Cos(theta);
+    buffer.Matrix[entry.matrix].A = a * Cos(theta);
+    buffer.Matrix[entry.matrix].B = a * Sin(theta);
+    buffer.Matrix[entry.matrix].C = -b * Sin(theta);
+    buffer.Matrix[entry.matrix].D = b * Cos(theta);
 }
 
-void Sprite::setShape(int shape, int size, int mode)
+void Sprite::setShape(SpriteShape shape, SpriteSize size, AffineMode mode)
 {
 
     static const s8 centerTable[3][4][2] =
@@ -105,11 +139,9 @@ void Sprite::setShape(int shape, int size, int mode)
         _center.x = centerTable[shape][size][0];
         _center.y = centerTable[shape][size][1];
     }
-    if(mode & AFFINE_ENABLE)
-        entry.matrixNum = _id;
-}
-
-void Sprite::setId(int id)
-{
-    this->_id = id;
+    if((mode & AFFINE_ENABLE) && _matrix < 0)
+    {
+        _matrix = Allocator::Matrix::allocate();
+        entry.matrix= _matrix;
+    }
 }

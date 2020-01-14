@@ -6,7 +6,7 @@ const anim_t anim[] =
     anim_waterdrop_fly,
     anim_waterdrop_stay,
     anim_waterdrop_fall,
-    anim_waterdrop_fall_immediatly,
+    anim_waterdrop_fall_immediately,
     anim_waterdrop_splash,
     anim_gamefreak_logo_appear,
     anim_gamefreak_logo_disappear,

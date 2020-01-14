@@ -15,7 +15,7 @@ EXTENSION   :=  4bpp gbapal gbabg json
 #---------------------------------------------------------------------------------
 ARCH	 :=	-mthumb -mthumb-interwork
 
-CFLAGS	 :=	-g -Wall -O2\
+CFLAGS	 :=	-g -Wall \
 		-mcpu=arm7tdmi -mtune=arm7tdmi\
  		-fomit-frame-pointer\
 		-ffast-math \

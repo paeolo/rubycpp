@@ -2,8 +2,11 @@
 #include "File.h"
 #include "Palette.h"
 
+#include <map>
+
 EWRAM_DATA Color Palette::data[PALETTE_LENGTH];
 EWRAM_DATA Color Palette::buffer[PALETTE_LENGTH];
+EWRAM_DATA std::map<int, int> tag;
 
 Color Color::Integer(int i)
 {

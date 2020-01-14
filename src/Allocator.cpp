@@ -1,88 +1,132 @@
 #include "Allocator.h"
+
+#include <gba_types.h>
+#include <gba_base.h>
+
+#include "Background.h"
 #include "Palette.h"
 #include "Sprite.h"
+#include "SpriteGroup.h"
 
-Sprite* Allocator::createSprite(int tag, int paletteTag, int tileTag)
+#include "MemoryPool.h"
+#include "Pool.h"
+
+#define SPRITE_MAP_SIZE 64
+#define SPRITE_GROUP_MAP_SIZE 16
+#define PALETTE_MAP_SIZE 16
+#define TILE_MAP_SIZE 16
+
+/*
+* Memory Management 
+*/
+EWRAM_DATA MemoryPool<Sprite, 64> spritePool;
+EWRAM_DATA static Pool<32> matrixPool;
+int paletteNum = 0;
+int tileNum = 0;
+
+/*
+* Map Management 
+*/
+EWRAM_DATA Sprite* spriteMap[SPRITE_MAP_SIZE] = { nullptr };
+EWRAM_DATA SpriteGroup* spriteGroupMap[SPRITE_GROUP_MAP_SIZE] = { nullptr };
+EWRAM_DATA int paletteMap[PALETTE_MAP_SIZE] = { -1 };
+EWRAM_DATA int tileMap[TILE_MAP_SIZE] = { -1 };
+
+/*
+* Sprite
+*/
+Sprite* Allocator::Sprite::getByTag(int tag)
 {
-    if (tag > 0)
-    {
-        Sprite* sprite = new Sprite
-        (
-            tag,
-            this->getPalette(paletteTag),
-            this->getTile(tileTag)
-        );
-        sprite->setId(_spriteId);
-        _sprite[tag] = sprite;
-        ++_spriteId;
-        return sprite;
-    }
-    else
-        return nullptr;
+    return spriteMap[tag & (SPRITE_MAP_SIZE - 1)];
+}
+void Allocator::Sprite::setByTag(int tag, ::Sprite* sprite)
+{
+    spriteMap[tag & (SPRITE_MAP_SIZE - 1)] = sprite;
+}
+void Allocator::Sprite::eraseTag(int tag)
+{
+    spriteMap[tag & (SPRITE_MAP_SIZE - 1)] = nullptr;
 }
 
-void Allocator::createPalette(const char* paletteName, int tag)
+Sprite* Allocator::Sprite::allocate()
 {
-    if(tag > 0)
-    {
-        Palette::Load(paletteName, 16 + _paletteId);
-        _palette[tag] = _paletteId;
-        ++_paletteId;
-    }
+    return spritePool.allocate();
+}
+void Allocator::Sprite::deallocate(::Sprite* sprite)
+{
+    spritePool.deallocate(sprite);
 }
 
-void Allocator::createTile(const char* tileName, int tag)
+/*
+* Sprite Group
+*/
+SpriteGroup* Allocator::SpriteGroup::getByTag(int tag)
 {
-    if (tag > 0)
-    {
-        int size = Sprite::LoadTile4(tileName, _tileId);
-        _tile[tag] = _tileId;
-        _tileId += size;
-    }
+    return spriteGroupMap[tag & (SPRITE_GROUP_MAP_SIZE - 1)]; 
+}
+void Allocator::SpriteGroup::setByTag(int tag, ::SpriteGroup* group)
+{
+    spriteGroupMap[tag & (SPRITE_GROUP_MAP_SIZE - 1)] = group;
+}
+void Allocator::SpriteGroup::eraseTag(int tag)
+{ 
+    spriteGroupMap[tag & (SPRITE_GROUP_MAP_SIZE - 1)] = nullptr;
 }
 
-void Allocator::destroySprite(int tag)
+/*
+* Matrix 
+*/
+
+int Allocator::Matrix::allocate()
+{ 
+    return matrixPool.allocate();
+}
+void Allocator::Matrix::deallocate(int matrixNum)
 {
-    delete _sprite[tag];
-    _sprite.erase(tag);
-    --_spriteId;
+    matrixPool.deallocate(matrixNum);
 }
 
-void Allocator::destroyPalette(int tag)
+/*
+* Palette
+*/
+int Allocator::Palette::getByTag(int tag)
 {
-    _palette.erase(tag);
-    --_paletteId;
+    return paletteMap[tag & (PALETTE_MAP_SIZE -1)];
 }
+void Allocator::Palette::setByTag(int tag, int paletteNum)
+{
+    paletteMap[tag & (PALETTE_MAP_SIZE -1)] = paletteNum;
+}
+void Allocator::Palette::eraseTag(int tag)
+{ 
+    paletteMap[tag & (PALETTE_MAP_SIZE -1)] = -1;
+}
+int Allocator::Palette::allocate(const char* tileName)
+{
+    ::Palette::Load(tileName, 16 + paletteNum);
+    return paletteNum++;
+}
+void Allocator::Palette::deallocate(int paletteNum) { }
 
-Sprite* Allocator::getSprite(int tag)
+/*
+* Tile 
+*/
+int Allocator::Tile::getByTag(int tag)
 {
-    if(tag > 0)
-        return _sprite[tag];
-    else
-        return nullptr;
+    return tileMap[tag & (TILE_MAP_SIZE -1)];
 }
-
-int Allocator::getPalette(int tag)
+void Allocator::Tile::setByTag(int tag, int tileNum)
 {
-    return _palette[tag];
+    tileMap[tag & (TILE_MAP_SIZE -1)] = tileNum;
 }
-
-int Allocator::getTile(int tag)
+void Allocator::Tile::eraseTag(int tag)
+{ 
+    tileMap[tag & (TILE_MAP_SIZE -1)] = -1;
+}
+int Allocator::Tile::allocate(const char* tileName)
 {
-    return _tile[tag];
+    int result = tileNum;
+    tileNum += ::Sprite::LoadTile4(tileName, tileNum);
+    return result;
 }
-
-void Allocator::destroyAllPalette()
-{
-    _palette.clear();
-    _paletteId = 0;
-}
-
-void Allocator::destroyAllSprite()
-{
-    std::map<int, Sprite*>::iterator it;
-    for(it = _sprite.begin(); it != _sprite.end(); ++it)
-        delete it->second;
-    _sprite.clear();
-    _spriteId = 0;
-}
+void Allocator::Tile::deallocate(int tileNum) { }

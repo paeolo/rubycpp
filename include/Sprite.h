@@ -1,12 +1,15 @@
 #ifndef SPRITE_H
 #define SPRITE_H
 
-#include "Background.h"
-#include "AffineObject.h"
-#include "Fixed.h"
-
 #include <gba_types.h>
 #include <gba_base.h>
+
+#include "Affine.h"
+#include "Background.h"
+#include "Fixed.h"
+#include "Sortable.h"
+#include "Sorter.h"
+#include "Updatable.h"
 
 /* VRAM */
 
@@ -38,7 +41,7 @@ enum SpriteSize
 	SIZE_64
 };
 
-typedef struct alignas(1)
+typedef struct alignas(1) ObjectEntry
 {
 	unsigned int y:8;
 	unsigned int affineMode:2;
@@ -47,12 +50,15 @@ typedef struct alignas(1)
 	unsigned int colorMode:1;
   	unsigned int shape:2;
 	unsigned int x:9;
-	unsigned int matrixNum:5;
+	unsigned int matrix:5;
 	unsigned int size:2;
 	unsigned int tileNum:10;
 	unsigned int priority:2;
 	unsigned int paletteNum:4;
 	Fixed coefficient;
+
+	static ObjectEntry makeEmptyEntry(void);
+
 } ObjectEntry;
 
 typedef struct alignas(1)
@@ -84,32 +90,34 @@ typedef union OAM_t
 #define OAM_RAM (*(volatile OAM_t *) 0x7000000)
 #define OAM_SIZE 0x400
 
-class Sprite : public AffineObject
+class Sprite final : public Affine, public Sortable
 {
-  public:
+	public:
+		void * operator new(std::size_t size);
+		void operator delete(void* ptr);
 		Sprite() = default;
 		~Sprite();
-		Sprite(int tag, int paletteNum, int tileNum);
-
+		Sprite(int paletteNum, int tileNum, int tag = -1, bool insert_updater = true);
+		
 		ObjectEntry entry = ObjectEntry();
-		int priority = 0;
 		int tileOffset = 0;
 
 		void update();
-		void destroy();
+		void update(pos_t offset);
 		void scale(Fixed a, Fixed b);
 		void rotate(Fixed a, Fixed b, int theta);
-		void setShape(int shape, int size, int mode);
-		void setId(int id);
+		void setShape(SpriteShape shape, SpriteSize size, AffineMode mode);
 
 		static int LoadTile4(const char* tileName, int tileNumber);
 		static void Flush();
+		IWRAM_DATA static const ObjectEntry emptyEntry;
 		EWRAM_DATA static OAM_t buffer;
+		IWRAM_DATA static Sorter sorter;
 
 	private:
-		int _id = 0;
-		int _tag = 0;
+		int _tag = -1;
 		int _tile = 0;
+		int _matrix = -1;
 		pos_t _center = pos_t();
 };
 

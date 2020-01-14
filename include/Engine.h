@@ -2,7 +2,10 @@
 #define ENGINE_H
 
 #include "Scene.h"
+#include "Updatable.h"
+#include "Updater.h"
 #include <queue>
+#include <list>
 
 class Engine
 {
@@ -10,6 +13,7 @@ class Engine
     static void initInterrupt();
     static void initOAM();
     static Scene* scene;
+    static Updater updater;
     void pushScene(Scene* scene);
     void popScene();
     static unsigned int counter();

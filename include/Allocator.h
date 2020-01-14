@@ -2,30 +2,45 @@
 #define ALLOCATOR_H
 
 #include "Sprite.h"
-#include <map>
+#include "SpriteGroup.h"
 
-class Allocator
+namespace Allocator
 {
-    public:
-        Sprite* createSprite(int tag, int paletteTag, int tileTag);
-        void createPalette(const char* paletteName, int tag);
-        void createTile(const char* tileName, int tag);
-        void destroySprite(int tag);
-        void destroyPalette(int tag);
-        Sprite* getSprite(int tag);
-        int getPalette(int tag);
-        int getTile(int tag);
-        void destroyAllSprite();
-        void destroyAllPalette();
-    private:
-        std::map<int, Sprite*> _sprite;
-        std::map<int, int> _palette;
-        std::map<int, int> _tile;
-        int _spriteId = 0;
-        int _paletteId = 0;
-        int _tileId = 0;
-};
-
-extern Allocator allocator;
+    namespace Sprite
+    {
+        ::Sprite* getByTag(int tag);
+        void setByTag(int tag, ::Sprite* sprite);
+        void eraseTag(int tag);
+        ::Sprite* allocate();
+        void deallocate(::Sprite* sprite);
+    }
+    namespace SpriteGroup
+    {
+        ::SpriteGroup* getByTag(int tag);
+        void setByTag(int tag, ::SpriteGroup* group);
+        void eraseTag(int tag);
+    }
+    namespace Matrix
+    {
+        int allocate();
+        void deallocate(int matrixNum);
+    }
+    namespace Palette
+    {
+        int getByTag(int tag);
+        void setByTag(int tag, int paletteNum);
+        void eraseTag(int tag);
+        int allocate(const char* tileName);
+        void deallocate(int paletteNum);
+    }
+    namespace Tile
+    {
+        int getByTag(int tag);
+        void setByTag(int tag, int tileNum);
+        void eraseTag(int tag);
+        int allocate(const char* tileName);
+        void deallocate(int tileNum);
+    }
+}
 
 #endif

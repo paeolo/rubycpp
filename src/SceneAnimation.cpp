@@ -27,6 +27,9 @@ void SceneAnimation::init()
                 case ParserNode::NODE_PALETTE:
                     Scene::init_Palette(p);
                     break;
+                case ParserNode::NODE_GROUP:
+                    Scene::init_Group(p);
+                    break;
                 case ParserNode::NODE_SPRITE:
                     Scene::init_Sprite(p);
                     break;
@@ -103,11 +106,26 @@ void SceneAnimation::insert(int time, Animation* animation)
 
 void SceneAnimation::init_Animation(Parser &p, Animation* &previous)
 {
-    Animation* animation = new Animation
-    (
-        p.value(ANIM_SPRITE),
-        p.value(ANIM_ANIM)
-    );
+    Animation* animation;
+    if(p.exists(ANIM_GROUP))
+    {
+        animation = new Animation(
+            p.value(ANIM_GROUP),
+            ObjectType::OBJECT_SPRITE_GROUP,
+            p.value(ANIM_ANIM)
+        );
+    }
+    else
+    {
+        animation = new Animation(
+            p.value(ANIM_SPRITE),
+            ObjectType::OBJECT_SPRITE,
+            p.value(ANIM_ANIM)
+        );  
+    }
+
+    if(p.exists(ANIM_PARAMETER))
+        animation->parameter = p.value(ANIM_PARAMETER);
 
     if(p.value(ANIM_PREMPT))
         animation->previous = previous;
