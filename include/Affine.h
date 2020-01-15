@@ -7,6 +7,11 @@ typedef struct pos
 {
     int x;
     int y;
+
+    constexpr pos operator+ (pos const& pos)
+    {
+        return { x + pos.x, y + pos.y};
+    }
 } pos_t;
 
 class Affine

@@ -36,7 +36,6 @@ void SpriteSorter::sort()
         }
         else 
             it = _list.erase(it);
-        
     }
     for (int i = id; i < _listSize; ++i)
     {

@@ -19,19 +19,20 @@ SpriteGroup::~SpriteGroup()
 
 void SpriteGroup::update()
 {
-    if(linked)
+    switch(mode)
     {
-        for(int i = 0; i < size; ++i)
-        {
-            this->sprite[i]->pos1 = this->pos1;
-            this->sprite[i]->pos2 = this->pos2;
-            this->sprite[i]->update();
-        }
-    }
-    else
-    {
-        for(int i = 0; i < size; ++i)
-        this->sprite[i]->update(this->pos1);
+        case GroupMode::UNLINKED:
+            for(int i = 0; i < size; ++i)
+                this->sprite[i]->update(this->pos1 + this->pos2);
+            break;
+        default:
+            for(int i = 0; i < size; ++i)
+            {
+                this->sprite[i]->pos1 = this->pos1;
+                this->sprite[i]->pos2 = this->pos2;
+                this->sprite[i]->update();
+            }
+            break;
     }
 }
 

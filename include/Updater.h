@@ -9,7 +9,6 @@ class Updater
     public:
         void insert(Updatable* updatable);
         void update();
-        void clear();
 
     private:
         std::list<Updatable*> _list;

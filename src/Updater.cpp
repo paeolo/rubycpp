@@ -2,25 +2,23 @@
 
 void Updater::insert(Updatable* updatable)
 {
-    std::list<Updatable*>::iterator it;
-    it = _list.insert(_list.end(), updatable);
-    (*it)->_holder = &*it;
+    std::list<Updatable*>::iterator it = _list.end();
+    it = _list.insert(it, updatable);
+    updatable->_holder = &*it;
 }
 
 void Updater::update()
 {
-    std::list<Updatable*>::iterator it;
-    for(it = _list.begin(); it != _list.end(); ++it)
+    std::list<Updatable*>::iterator it = _list.begin();
+    while (it != _list.end())
     {
-        while(it != _list.end() && *it == nullptr)
+        if ((*it) != nullptr)
+        {
+            if ((*it)->_active)
+                (*it)->update();
+        }
+        else
             it = _list.erase(it);
-
-        if(it != _list.end() && (*it)->_active)
-            (*it)->update();
+        ++it;
     }
-}
-
-void Updater::clear()
-{
-    _list.clear();
 }

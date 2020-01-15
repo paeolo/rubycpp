@@ -8,8 +8,6 @@
 #include "Palette.h"
 #include "Sprite.h"
 
-#include "mgba.h"
-
 EWRAM_DATA OAM_t Sprite::buffer;
 IWRAM_DATA SpriteSorter Sprite::sorter;
 
@@ -82,7 +80,6 @@ void Sprite::update(pos_t offset)
     if (this->visible)
     {
         entry.tileNum = _tile + tileOffset;
-        mgba_printf("tileNum: %d", entry.tileNum);
         entry.priority = priority;
         entry.x = this->pos1.x + this->pos2.x + offset.x + _center.x;
         entry.y = this->pos1.y + this->pos2.y + offset.y + _center.y;

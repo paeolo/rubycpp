@@ -5,6 +5,12 @@
 
 #define GROUP_SIZE_MAX 20
 
+enum GroupMode
+{
+    LINKED,
+    UNLINKED
+};
+
 class SpriteGroup : public Affine, public Updatable
 {
     public:
@@ -20,7 +26,7 @@ class SpriteGroup : public Affine, public Updatable
 
         Sprite* sprite[GROUP_SIZE_MAX];
         int size = 0;
-        bool linked = true;
+        GroupMode mode = GroupMode::LINKED;
 };
 
 #endif

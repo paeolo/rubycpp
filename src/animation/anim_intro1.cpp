@@ -171,7 +171,7 @@ bool anim_gamefreak_logo_appear(anim_object_t &object, anim_param_t &param)
         LCD.BLDALPHA = alpha_blend[64];
         LCD.BLDY = 0;
 
-        GROUP->linked = false;
+        GROUP->mode = GroupMode::UNLINKED;
         GROUP->activate();
         
         for (int i = 0; i < 18; i++)
@@ -192,9 +192,8 @@ bool anim_gamefreak_logo_appear(anim_object_t &object, anim_param_t &param)
         LCD.BLDALPHA = alpha_blend[param.count >> 1];
     }
     else
-    {
         return true;
-    }
+
     return false;
 }
 
@@ -240,9 +239,8 @@ bool anim_scroll_down(anim_object_t &object, anim_param_t &param)
         ++param.rho;
     }
     else
-    {
         return true;
-    }
+        
     return false;
 }
 
