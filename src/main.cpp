@@ -40,9 +40,9 @@ int main(void)
 		VBlankIntrWait();
 		if(Engine::scene)
 		{
-			Engine::updater.update();
-			Sprite::sorter.sort();
 			Engine::scene->update();
+			Sprite::sorter.sort();
+			Engine::updater.update();
 		}
 	}
 }

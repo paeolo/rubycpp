@@ -38,5 +38,11 @@ void SpriteSorter::sort()
             it = _list.erase(it);
         
     }
+    for (int i = id; i < _listSize; ++i)
+    {
+        ObjectEntry entry = Sprite::emptyEntry;
+        entry.coefficient = Sprite::buffer.Object[i].coefficient;
+        Sprite::buffer.Object[i] = entry;
+    }
     _listSize = id;
 }

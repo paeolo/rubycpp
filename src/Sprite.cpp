@@ -66,9 +66,6 @@ Sprite::Sprite(int paletteNum, int tileNum, int tag, bool insert_updater): Sprit
 
 Sprite::~Sprite()
 {
-    ObjectEntry entry = Sprite::emptyEntry;
-    entry.coefficient = buffer.Object[_id].coefficient;
-    buffer.Object[_id] = entry;
     if (_tag != 1)
         Allocator::Sprite::eraseTag(_tag);
     if (_matrix >= 0)
