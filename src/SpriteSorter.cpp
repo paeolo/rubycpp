@@ -1,8 +1,7 @@
-#include "Sorter.h"
-
+#include "SpriteSorter.h"
 #include "Sprite.h"
 
-void Sorter::insert(Sortable *sortable)
+void SpriteSorter::insert(Sortable *sortable)
 {
     int id = _list.size();
     std::list<Sortable *>::iterator it = _list.begin();
@@ -17,7 +16,7 @@ void Sorter::insert(Sortable *sortable)
     sortable->_holder = &*it;
 }
 
-void Sorter::sort()
+void SpriteSorter::sort()
 {
     int id = 0;
     std::list<Sortable *>::iterator it = _list.end();

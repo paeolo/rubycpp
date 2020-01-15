@@ -11,7 +11,7 @@
 #include "mgba.h"
 
 EWRAM_DATA OAM_t Sprite::buffer;
-IWRAM_DATA Sorter Sprite::sorter;
+IWRAM_DATA SpriteSorter Sprite::sorter;
 
 IWRAM_DATA const ObjectEntry Sprite::emptyEntry = ObjectEntry::makeEmptyEntry();
 

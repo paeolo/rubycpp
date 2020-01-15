@@ -1,10 +1,10 @@
-#ifndef SORTER_H
-#define SORTER_H
+#ifndef SPRITE_SORTER_H
+#define SPRITE_SORTER_H
 
 #include "Sortable.h"
 #include <list>
 
-class Sorter
+class SpriteSorter
 {
     public:
         void insert(Sortable* sortable);

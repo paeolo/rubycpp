@@ -8,7 +8,7 @@
 #include "Background.h"
 #include "Fixed.h"
 #include "Sortable.h"
-#include "Sorter.h"
+#include "SpriteSorter.h"
 #include "Updatable.h"
 
 /* VRAM */
@@ -112,7 +112,7 @@ class Sprite final : public Affine, public Sortable
 		static void Flush();
 		IWRAM_DATA static const ObjectEntry emptyEntry;
 		EWRAM_DATA static OAM_t buffer;
-		IWRAM_DATA static Sorter sorter;
+		IWRAM_DATA static SpriteSorter sorter;
 
 	private:
 		int _tag = -1;

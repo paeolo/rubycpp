@@ -5,7 +5,7 @@
 
 class Sortable : public Updatable
 {
-    friend class Sorter;
+    friend class SpriteSorter;
 
     public:
         Sortable() = default;
