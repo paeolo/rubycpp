@@ -15,7 +15,7 @@ void Updater::update()
         while(it != _list.end() && *it == nullptr)
             it = _list.erase(it);
 
-        if(it != _list.end() && (*it)->active)
+        if(it != _list.end() && (*it)->_active)
             (*it)->update();
     }
 }

@@ -83,7 +83,7 @@ void Sprite::update(pos_t offset)
     {
         entry.tileNum = _tile + tileOffset;
         mgba_printf("tileNum: %d", entry.tileNum);
-        entry.priority = _priority;
+        entry.priority = priority;
         entry.x = this->pos1.x + this->pos2.x + offset.x + _center.x;
         entry.y = this->pos1.y + this->pos2.y + offset.y + _center.y;
         entry.coefficient = buffer.Object[_id].coefficient;

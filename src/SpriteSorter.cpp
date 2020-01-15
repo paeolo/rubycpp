@@ -7,7 +7,7 @@ void SpriteSorter::insert(Sortable *sortable)
     std::list<Sortable *>::iterator it = _list.begin();
     for (; it != _list.end(); ++it)
     {
-        if (sortable->_priority <= (*it)->_priority)
+        if (sortable->priority <= (*it)->priority)
             break;
         --id;
     }
@@ -25,7 +25,7 @@ void SpriteSorter::sort()
         it--;
         if (*it != nullptr)
         {
-            if((*it)->_id != id && !(*it)->active)
+            if((*it)->_id != id && !(*it)->_active)
             {
                 ObjectEntry entry = Sprite::buffer.Object[(*it)->_id];
                 entry.coefficient = Sprite::buffer.Object[id].coefficient;

@@ -8,10 +8,7 @@ SpriteGroup::SpriteGroup(int tag, bool insert_updater): SpriteGroup()
     if(tag != -1)
         Allocator::SpriteGroup::setByTag(tag, this);
     if(insert_updater)
-    {
-        this->active = false;
         Engine::updater.insert(this);
-    }
 }
 
 SpriteGroup::~SpriteGroup()
@@ -46,14 +43,14 @@ void SpriteGroup::add(Sprite* sprite)
 
 void SpriteGroup::activate()
 {
-    this->active = true;
+    Updatable::activate();
     for(int i = 0; i < size; ++i)
-        this->sprite[i]->active = true;
+        this->sprite[i]->activate();
 }
 
 void SpriteGroup::deactivate()
 {
-    this->active = false;
+    Updatable::deactivate();
     for(int i = 0; i < size; ++i)
-        this->sprite[i]->active = false;
+        this->sprite[i]->deactivate();
 }

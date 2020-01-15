@@ -250,7 +250,7 @@ bool anim_latios_flight(anim_object_t &object, anim_param_t &param)
     ++param.count;
     if(!param.init)
     {
-        SPRITE->active = true;
+        SPRITE->activate();
         SPRITE->setShape(HORIZONTAL, SIZE_64, AFFINE_DOUBLE);
 
         param.alpha = -24;

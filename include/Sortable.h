@@ -14,9 +14,10 @@ class Sortable : public Updatable
             if(_holder != nullptr)
                 *_holder = nullptr;
         }
+
+        int priority = 0;
         
     protected:
-        int _priority = 0;
         int _id = 0;
         
     private:

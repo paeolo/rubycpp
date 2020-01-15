@@ -3,6 +3,7 @@
 
 class Updatable
 {
+    friend class SpriteSorter;
     friend class Updater;
 
     public:
@@ -14,9 +15,11 @@ class Updatable
         }
 
         virtual void update() = 0;
-        bool active = false;
+        virtual void activate() { _active = true; }
+        virtual void deactivate() { _active = true; }
         
     private:
+        bool _active = false;
         Updatable** _holder = nullptr;
 };
 
