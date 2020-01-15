@@ -81,6 +81,7 @@ bool anim_waterdrop_fall(anim_object_t &object, anim_param_t &param)
     }
     else
     {
+        GROUP->pos1.y += 2;
         GROUP->sprite[0]->visible = false;
         GROUP->sprite[1]->visible = false;
         GROUP->sprite[2]->visible = false;
