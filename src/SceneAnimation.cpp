@@ -52,8 +52,8 @@ void SceneAnimation::routine()
         this->activate(animation);
     }
 
-    std::list<Animation*>::iterator it;
-    for(it = _activeAnim.begin(); it != _activeAnim.end(); ++it)
+    std::list<Animation*>::iterator it = _activeAnim.begin();
+    for(; it != _activeAnim.end(); ++it)
     {        
         if((*it)->end())
         {

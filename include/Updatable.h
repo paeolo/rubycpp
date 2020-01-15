@@ -18,8 +18,9 @@ class Updatable
         virtual void activate() { _active = true; }
         virtual void deactivate() { _active = true; }
         
-    private:
+    protected:
         bool _active = false;
+    private:
         Updatable** _holder = nullptr;
 };
 

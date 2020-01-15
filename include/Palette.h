@@ -4,9 +4,6 @@
 #include <gba_types.h>
 #include <gba_base.h>
 
-#include "Pool.h"
-#include <map>
-
 /* COLOR */
 
 #define RGB(red, green, blue) (Color {red, green, blue, 0})
@@ -47,8 +44,6 @@ class Palette
     static void Flush();
     EWRAM_DATA static Color data[PALETTE_LENGTH];
     EWRAM_DATA static Color buffer[PALETTE_LENGTH];
-    IWRAM_DATA static Pool<16> palettes;
-    EWRAM_DATA static std::map<int, int> tag;
 };
 
 #endif

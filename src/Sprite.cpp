@@ -51,7 +51,6 @@ void Sprite::operator delete(void* ptr)
 
 Sprite::Sprite(int paletteNum, int tileNum, int tag, bool insert_updater): Sprite()
 {
-    Sprite::sorter.insert(this);
     entry.paletteNum = paletteNum;
     _tile = tileNum;
     _tag = tag;
@@ -59,7 +58,7 @@ Sprite::Sprite(int paletteNum, int tileNum, int tag, bool insert_updater): Sprit
         Allocator::Sprite::setByTag(tag, this);
     if(insert_updater)
         Engine::updater.insert(this);
-    
+    Sprite::sorter.insert(this);
 }
 
 Sprite::~Sprite()

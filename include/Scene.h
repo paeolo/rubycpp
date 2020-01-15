@@ -2,8 +2,9 @@
 #define SCENE_H
 
 #include "Parser.h"
+#include "Updatable.h"
 
-class Scene
+class Scene : public Updatable
 {
     public:
         Scene() = default;
@@ -12,13 +13,10 @@ class Scene
         
         virtual void init();
         void update();
-        void activate();
-        void deactivate();
 
     protected:
         virtual void routine() = 0;
         const char* _sceneName = nullptr;
-        bool _active = false;
         bool _end = false;
 
         void init_Palette(Parser &p);

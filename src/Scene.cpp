@@ -14,9 +14,6 @@ Scene::Scene(const char* sceneName) : Scene()
     _sceneName = sceneName;
 }
 
-void Scene::activate() {this->_active = true;}
-void Scene::deactivate() {this->_active = false;}
-
 void Scene::update()
 {
     if(this->_end)
