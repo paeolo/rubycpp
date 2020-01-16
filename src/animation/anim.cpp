@@ -1,5 +1,6 @@
 #include "anim.h"
 #include "anim_intro1.h"
+#include "anim_intro2.h"
 
 const anim_t anim[] =
 {
@@ -11,5 +12,6 @@ const anim_t anim[] =
     anim_gamefreak_logo_appear,
     anim_gamefreak_logo_disappear,
     anim_scroll_down,
-    anim_latios_flight
+    anim_latios_flight,
+    anim_background_scroll
 };

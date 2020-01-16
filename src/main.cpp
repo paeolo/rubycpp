@@ -16,8 +16,10 @@ void introTask()
 	engine.pushScene(new SceneWait(20));
 	engine.pushScene(new SceneFade("intro1_fade", BLACK, FadeType::NORMAL));
 	engine.pushScene(new SceneAnimation("intro1_anim"));
+	engine.pushScene(new SceneWait(80));
 	engine.pushScene(new SceneFade(nullptr, BLANK, FadeType::REVERSE));
 	engine.pushScene(new SceneFade("intro2_fade", BLANK, FadeType::NORMAL));
+	engine.pushScene(new SceneAnimation("intro2_anim"));
 }
 
 int main(void)

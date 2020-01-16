@@ -1,0 +1,7 @@
+{
+    "animation":
+    [
+        "SCROLL BACKGROUND",
+        { "anim": 9, "begin": 0}
+    ]
+}
