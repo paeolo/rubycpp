@@ -1,7 +1,34 @@
 {
+    "group":
+    [
+        {"tag": 0, "x": 16, "y": 88},
+        {"tag": 1, "x": 40, "y": 88},
+        {"tag": 2, "x": 56, "y": 88}
+    ],
+    "sprite":
+    [
+        "TREE GROUP 1",
+        {"group": 0, "palette": 0, "tile": 0, "tileoffset": 0, "x": 0, "priority": 2},
+        {"group": 0, "palette": 0, "tile": 0, "tileoffset": 0, "x": 64, "priority": 2},
+        {"group": 0, "palette": 0, "tile": 0, "tileoffset": 0, "x": 128, "priority": 2},
+        {"group": 0, "palette": 0, "tile": 0, "tileoffset": 0, "x": 192, "priority": 2},
+        "TREE GROUP 1",
+        {"group": 1, "palette": 0, "tile": 0, "tileoffset": 16, "x": 0, "priority": 2},
+        {"group": 1, "palette": 0, "tile": 0, "tileoffset": 16, "x": 64, "priority": 2},
+        {"group": 1, "palette": 0, "tile": 0, "tileoffset": 16, "x": 128, "priority": 2},
+        {"group": 1, "palette": 0, "tile": 0, "tileoffset": 16, "x": 192, "priority": 2},
+        "TREE GROUP 1",
+        {"group": 2, "palette": 0, "tile": 0, "tileoffset": 24, "x": 0, "priority": 2},
+        {"group": 2, "palette": 0, "tile": 0, "tileoffset": 24, "x": 64, "priority": 2},
+        {"group": 2, "palette": 0, "tile": 0, "tileoffset": 24, "x": 128,"priority": 2},
+        {"group": 2, "palette": 0, "tile": 0, "tileoffset": 24, "x": 192, "priority": 2}
+    ],
     "animation":
     [
         "SCROLL BACKGROUND",
-        { "anim": 9, "begin": 0}
+        { "anim": 9, "begin": 0},
+        { "anim": 10, "begin": 0, "group": 0},
+        { "anim": 11, "begin": 0, "group": 1},
+        { "anim": 12, "begin": 0, "group": 2}
     ]
 }

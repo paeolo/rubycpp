@@ -118,6 +118,7 @@ void Scene::init_Sprite(Parser &p)
             Allocator::Palette::getByTag(p.value(SPRITE_PALETTE_)),
             Allocator::Tile::getByTag(p.value(SPRITE_TILE)),
             -1,
+            p.value(SPRITE_PRIORITY),
             false
         );
         int groupTag = p.value(SPRITE_GROUP);
@@ -131,7 +132,8 @@ void Scene::init_Sprite(Parser &p)
         sprite = new Sprite(
             Allocator::Palette::getByTag(p.value(SPRITE_PALETTE_)),
             Allocator::Tile::getByTag(p.value(SPRITE_TILE)),
-            p.value(SPRITE_TAG)
+            p.value(SPRITE_TAG),
+            p.value(SPRITE_PRIORITY)
         );
     }
 

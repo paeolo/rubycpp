@@ -13,5 +13,9 @@ const anim_t anim[] =
     anim_gamefreak_logo_disappear,
     anim_scroll_down,
     anim_latios_flight,
-    anim_background_scroll
+    anim_background_scroll,
+    anim_trees_group_1,
+    anim_trees_group_2,
+    anim_trees_group_3
+    
 };

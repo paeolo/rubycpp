@@ -171,7 +171,7 @@ bool anim_gamefreak_logo_appear(anim_object_t &object, anim_param_t &param)
         LCD.BLDALPHA = alpha_blend[64];
         LCD.BLDY = 0;
 
-        GROUP->mode = GroupMode::UNLINKED;
+        GROUP->mode = GroupMode::OFFSET;
         GROUP->activate();
         
         for (int i = 0; i < 18; i++)

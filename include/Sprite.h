@@ -97,7 +97,7 @@ class Sprite final : public Affine, public Sortable
 		void operator delete(void* ptr);
 		Sprite() = default;
 		~Sprite();
-		Sprite(int paletteNum, int tileNum, int tag = -1, bool insert_updater = true);
+		Sprite(int paletteNum, int tileNum, int tag = -1, int priority = 0, bool insert_updater = true);
 		
 		ObjectEntry entry = ObjectEntry();
 		int tileOffset = 0;

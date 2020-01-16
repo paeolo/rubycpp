@@ -64,7 +64,8 @@ enum SpriteKey
     SPRITE_TILE,
     SPRITE_TILEOFFSET,
     SPRITE_X,
-    SPRITE_Y
+    SPRITE_Y,
+    SPRITE_PRIORITY
 };
 
 enum AnimationKey

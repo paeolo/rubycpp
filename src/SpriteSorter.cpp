@@ -3,26 +3,22 @@
 
 void SpriteSorter::insert(Sortable *sortable)
 {
-    int id = _list.size();
     std::list<Sortable *>::iterator it = _list.begin();
     for (; it != _list.end(); ++it)
     {
-        if (sortable->priority <= (*it)->priority)
+        if (sortable->_priority < (*it)->_priority)
             break;
-        --id;
     }
     it = _list.insert(it, sortable);
-    sortable->_id = id;
     sortable->_holder = &*it;
 }
 
 void SpriteSorter::sort()
 {
     int id = 0;
-    std::list<Sortable *>::iterator it = _list.end();
-    while (it != _list.begin())
+    std::list<Sortable *>::iterator it = _list.begin();
+    while (it != _list.end())
     {
-        it--;
         if (*it != nullptr)
         {
             if((*it)->_id != id && !(*it)->_active)
@@ -33,6 +29,7 @@ void SpriteSorter::sort()
             }
             (*it)->_id = id;
             ++id;
+            ++it;
         }
         else 
             it = _list.erase(it);

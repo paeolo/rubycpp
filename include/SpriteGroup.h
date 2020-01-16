@@ -8,7 +8,7 @@
 enum GroupMode
 {
     LINKED,
-    UNLINKED
+    OFFSET
 };
 
 class SpriteGroup : public Affine, public Updatable

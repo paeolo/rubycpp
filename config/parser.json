@@ -57,7 +57,8 @@
             "tile",
             "tileoffset",
             "x",
-            "y"
+            "y",
+            "priority"
         ],
         "animation":
         [

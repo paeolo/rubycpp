@@ -7,19 +7,21 @@
         {"file": "intro2_trees2", "position": 0},
         {"file": "intro2_grass",  "position": 15},
         "OBJECT",
-        {"file": "intro2_trees",  "tag": 400}
+        {"file": "intro2_trees",  "tag": 0}
     ],
     "tile":
     [
         "BACKGROUND",
         {"file": "intro2_trees", "char": 0},
-        {"file": "intro2_grass", "char": 1}
+        {"file": "intro2_grass", "char": 1},
+        "OBJECT",
+        {"file": "intro2_trees_small", "tag": 0}
     ],
     "background":
     [
         "TREES",
-        {"file": "intro2_grass", "position": 1, "priority": 0, "char": 1, "map": 16},
         {"file": "intro2_trees", "position": 2, "priority": 2, "char": 0, "map": 6},
+        {"file": "intro2_grass", "position": 1, "priority": 0, "char": 1, "map": 16},
         "MOUNTAINS",
         {"position": 3, "priority": 1, "char": 0, "map": 7}
     ]

@@ -21,7 +21,7 @@ void SpriteGroup::update()
 {
     switch(mode)
     {
-        case GroupMode::UNLINKED:
+        case GroupMode::OFFSET:
             for(int i = 0; i < size; ++i)
                 this->sprite[i]->update(this->pos1 + this->pos2);
             break;

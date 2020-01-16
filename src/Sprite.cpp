@@ -49,11 +49,12 @@ void Sprite::operator delete(void* ptr)
     Allocator::Sprite::deallocate((Sprite*) ptr);
 }
 
-Sprite::Sprite(int paletteNum, int tileNum, int tag, bool insert_updater): Sprite()
+Sprite::Sprite(int paletteNum, int tileNum, int tag, int priority, bool insert_updater): Sprite()
 {
     entry.paletteNum = paletteNum;
     _tile = tileNum;
     _tag = tag;
+    _priority = priority;
     if(tag != -1)
         Allocator::Sprite::setByTag(tag, this);
     if(insert_updater)
@@ -79,7 +80,7 @@ void Sprite::update(pos_t offset)
     if (this->visible)
     {
         entry.tileNum = _tile + tileOffset;
-        entry.priority = priority;
+        entry.priority = _priority;
         entry.x = this->pos1.x + this->pos2.x + offset.x + _center.x;
         entry.y = this->pos1.y + this->pos2.y + offset.y + _center.y;
         entry.coefficient = buffer.Object[_id].coefficient;
