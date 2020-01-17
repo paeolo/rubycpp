@@ -105,3 +105,18 @@ bool anim_trees_group_3(anim_object_t &object, anim_param_t &param)
     ++param.count;
     return false;
 }
+
+bool anim_latios(anim_object_t &object, anim_param_t &param)
+{
+    if (!param.init)
+    {
+        GROUP->activate();
+        GROUP->mode = GroupMode::OFFSET;
+        GROUP->sprite[0]->setShape(SQUARE, SIZE_64, AFFINE_DISABLE);
+        GROUP->sprite[1]->setShape(SQUARE, SIZE_64, AFFINE_DISABLE);
+        param.theta = 92;
+        param.init = true;
+    }
+
+    return false;
+}

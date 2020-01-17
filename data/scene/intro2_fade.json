@@ -7,7 +7,8 @@
         {"file": "intro2_trees2", "position": 0},
         {"file": "intro2_grass",  "position": 15},
         "OBJECT",
-        {"file": "intro2_trees",  "tag": 0}
+        {"file": "intro2_trees",  "tag": 0},
+        {"file": "intro2_latios",  "tag": 1}
     ],
     "tile":
     [
@@ -15,7 +16,8 @@
         {"file": "intro2_trees", "char": 0},
         {"file": "intro2_grass", "char": 1},
         "OBJECT",
-        {"file": "intro2_trees_small", "tag": 0}
+        {"file": "intro2_trees_small", "tag": 0},
+        {"file": "intro2_latios", "tag": 1}
     ],
     "background":
     [

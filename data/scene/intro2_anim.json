@@ -1,9 +1,12 @@
 {
     "group":
     [
+        "TREE GROUPS",
         {"tag": 0, "x": 16, "y": 88},
         {"tag": 1, "x": 40, "y": 88},
-        {"tag": 2, "x": 56, "y": 88}
+        {"tag": 2, "x": 56, "y": 88},
+        "LATIOS",
+        {"tag": 3, "x": 48, "y": 10}
     ],
     "sprite":
     [
@@ -21,7 +24,10 @@
         {"group": 2, "palette": 0, "tile": 0, "tileoffset": 24, "x": 0, "priority": 2},
         {"group": 2, "palette": 0, "tile": 0, "tileoffset": 24, "x": 64, "priority": 2},
         {"group": 2, "palette": 0, "tile": 0, "tileoffset": 24, "x": 128,"priority": 2},
-        {"group": 2, "palette": 0, "tile": 0, "tileoffset": 24, "x": 192, "priority": 2}
+        {"group": 2, "palette": 0, "tile": 0, "tileoffset": 24, "x": 192, "priority": 2},
+        "LATIOS",
+        {"group": 3, "palette": 1, "tile": 1, "tileoffset": 0, "x": 0, "priority": 0},
+        {"group": 3, "palette": 1, "tile": 1, "tileoffset": 64, "x": 64, "priority": 0}
     ],
     "animation":
     [
@@ -29,6 +35,7 @@
         { "anim": 9, "begin": 0},
         { "anim": 10, "begin": 0, "group": 0},
         { "anim": 11, "begin": 0, "group": 1},
-        { "anim": 12, "begin": 0, "group": 2}
+        { "anim": 12, "begin": 0, "group": 2},
+        { "anim": 13, "begin": 0, "group": 3}
     ]
 }
