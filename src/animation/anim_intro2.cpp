@@ -15,7 +15,7 @@ bool anim_background_scroll(anim_object_t &object, anim_param_t &param)
         param.init = true;
     }
     BGOFS[1].x = -4 * param.count;
-    BGOFS[3].x = -( param.count >> 2);
+    BGOFS[3].x = -(param.count >> 2);
 
     if (param.rho < 2)
     {
@@ -32,6 +32,20 @@ bool anim_background_scroll(anim_object_t &object, anim_param_t &param)
     return false;
 }
 
+inline void update_trees_y_position(int &y, int &y0, unsigned int &count, s8 &theta, int &rho)
+{
+    if (rho < 2)
+    {
+        if ((count & 3) == 0)
+        {
+            theta = (theta + 1) & 127;
+            if (theta == 0)
+                ++rho;
+        }
+        y = y0 - 48 * Sin(theta);
+    }
+}
+
 bool anim_trees_group_1(anim_object_t &object, anim_param_t &param)
 {
     if (!param.init)
@@ -46,16 +60,8 @@ bool anim_trees_group_1(anim_object_t &object, anim_param_t &param)
         param.init = true;
     }
     GROUP->pos1.x = param.lambda[0] + (param.count >> 3);
-    if (param.rho < 2)
-    {
-        if ((param.count & 3) == 0)
-        {
-            param.theta = (param.theta + 1) & 127;
-            if (param.theta == 0)
-                ++param.rho;
-        }
-        GROUP->pos1.y = param.lambda[1] - 48 * Sin(param.theta);
-    }
+    update_trees_y_position(GROUP->pos1.y, param.lambda[1],
+        param.count, param.theta, param.rho);
     ++param.count;
     return false;
 }
@@ -74,16 +80,8 @@ bool anim_trees_group_2(anim_object_t &object, anim_param_t &param)
         param.init = true;
     }
     GROUP->pos1.x = param.lambda[0] + (param.count >> 4);
-    if (param.rho < 2)
-    {
-        if ((param.count & 3) == 0)
-        {
-            param.theta = (param.theta + 1) & 127;
-            if (param.theta == 0)
-                ++param.rho;
-        }
-        GROUP->pos1.y = param.lambda[1] - 48 * Sin(param.theta);
-    }
+    update_trees_y_position(GROUP->pos1.y, param.lambda[1],
+        param.count, param.theta, param.rho);
     ++param.count;
     return false;
 }
@@ -102,16 +100,8 @@ bool anim_trees_group_3(anim_object_t &object, anim_param_t &param)
         param.init = true;
     }
     GROUP->pos1.x = param.lambda[0] + (param.count >> 5);
-    if (param.rho < 2)
-    {
-        if ((param.count & 3) == 0)
-        {
-            param.theta = (param.theta + 1) & 127;
-            if (param.theta == 0)
-                ++param.rho;
-        }
-        GROUP->pos1.y = param.lambda[1] - 48 * Sin(param.theta);
-    }
+    update_trees_y_position(GROUP->pos1.y, param.lambda[1],
+        param.count, param.theta, param.rho);
     ++param.count;
     return false;
 }
