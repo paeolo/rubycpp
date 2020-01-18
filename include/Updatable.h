@@ -16,7 +16,7 @@ class Updatable
 
         virtual void update() = 0;
         virtual void activate() { _active = true; }
-        virtual void deactivate() { _active = true; }
+        virtual void deactivate() { _active = false; }
         
     protected:
         bool _active = false;
