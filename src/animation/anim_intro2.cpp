@@ -135,3 +135,16 @@ bool anim_latios(anim_object_t &object, anim_param_t &param)
     GROUP->pos2.y = 8 * Sin(param.theta) - bg_y_pos;
     return false;
 }
+
+bool anim_may(anim_object_t &object, anim_param_t &param)
+{
+    if (!param.init)
+    {
+        GROUP->activate();
+        GROUP->mode = GroupMode::OFFSET;
+        GROUP->sprite[0]->setShape(SQUARE, SIZE_64, AFFINE_DISABLE);
+        GROUP->sprite[1]->setShape(HORIZONTAL, SIZE_64, AFFINE_DISABLE);
+        param.init = true;
+    }
+    return false;
+}

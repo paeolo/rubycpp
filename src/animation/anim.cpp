@@ -17,5 +17,6 @@ const anim_t anim[] =
     anim_trees_group_1,
     anim_trees_group_2,
     anim_trees_group_3,
-    anim_latios
+    anim_latios,
+    anim_may
 };

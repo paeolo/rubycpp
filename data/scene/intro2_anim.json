@@ -6,7 +6,9 @@
         {"tag": 1, "x": 40, "y": 88},
         {"tag": 2, "x": 56, "y": 88},
         "LATIOS",
-        {"tag": 3, "x": -96, "y": 60}
+        {"tag": 3, "x": -96, "y": 60},
+        "MAY",
+        {"tag": 4, "x": 170, "y": 100}
     ],
     "sprite":
     [
@@ -27,7 +29,10 @@
         {"group": 2, "palette": 0, "tile": 0, "tileoffset": 24, "x": 192, "priority": 2},
         "LATIOS",
         {"group": 3, "palette": 1, "tile": 1, "tileoffset": 0, "x": 0, "priority": 0},
-        {"group": 3, "palette": 1, "tile": 1, "tileoffset": 64, "x": 64, "priority": 0}
+        {"group": 3, "palette": 1, "tile": 1, "tileoffset": 64, "x": 64, "priority": 0},
+        "MAY",
+        {"group": 4, "palette": 2, "tile": 2, "tileoffset": 0, "y": 0, "priority": 0},
+        {"group": 4, "palette": 2, "tile": 3, "tileoffset": 0, "y": 8, "priority": 0}
     ],
     "animation":
     [
@@ -36,6 +41,7 @@
         { "anim": 10, "begin": 0, "group": 0},
         { "anim": 11, "begin": 0, "group": 1},
         { "anim": 12, "begin": 0, "group": 2},
-        { "anim": 13, "begin": 400, "group": 3}
+        { "anim": 13, "begin": 400, "group": 3},
+        { "anim": 14, "begin": 0, "group": 4}
     ]
 }
