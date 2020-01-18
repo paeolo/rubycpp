@@ -6,7 +6,7 @@
         {"tag": 1, "x": 40, "y": 88},
         {"tag": 2, "x": 56, "y": 88},
         "LATIOS",
-        {"tag": 3, "x": 48, "y": 10}
+        {"tag": 3, "x": -96, "y": 60}
     ],
     "sprite":
     [
@@ -36,6 +36,6 @@
         { "anim": 10, "begin": 0, "group": 0},
         { "anim": 11, "begin": 0, "group": 1},
         { "anim": 12, "begin": 0, "group": 2},
-        { "anim": 13, "begin": 0, "group": 3}
+        { "anim": 13, "begin": 400, "group": 3}
     ]
 }
