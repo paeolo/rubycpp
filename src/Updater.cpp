@@ -16,9 +16,9 @@ void Updater::update()
         {
             if ((*it)->_active)
                 (*it)->update();
+            ++it;
         }
         else
             it = _list.erase(it);
-        ++it;
     }
 }
