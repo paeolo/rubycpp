@@ -17,6 +17,9 @@ const anim_t anim[] =
     anim_trees_group_1,
     anim_trees_group_2,
     anim_trees_group_3,
-    anim_may,
+    anim_may_begin,
+    anim_may_bike,
+    anim_may_see_latios,
+    anim_may_bike_fast,
     anim_latios
 };

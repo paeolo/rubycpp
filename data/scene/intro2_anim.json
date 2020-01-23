@@ -42,6 +42,9 @@
         { "anim": 11, "begin": 0, "group": 1},
         { "anim": 12, "begin": 0, "group": 2},
         { "anim": 13, "begin": 0, "group": 3},
-        { "anim": 14, "begin": 390, "group": 4}
+        { "anim": 14, "delay": 200, "prempt": true, "group": 3},
+        { "anim": 15, "delay": 190, "prempt": true, "group": 3},
+        { "anim": 17, "begin": 390, "group": 4},
+        { "anim": 16, "next": true, "group": 3}
     ]
 }

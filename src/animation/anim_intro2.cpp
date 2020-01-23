@@ -25,6 +25,25 @@ inline void update_bg_y_pos(s8 &theta, unsigned int &count, int &rho)
     }
 }
 
+inline void update_may_y_pos(int &y, unsigned int &count)
+{
+    if ((count & 7) == 0)
+    {
+        if (y != 0)
+            y = 0;
+        else
+        {
+            int rand = Random() & 3;
+            if (rand == 0)
+                y = -1;
+            else if (rand == 1)
+                y = 1;
+            else
+                y = 0;
+        }
+    }
+}
+
 bool anim_background_scroll(anim_object_t &object, anim_param_t &param)
 {
     if (!param.init)
@@ -100,7 +119,7 @@ bool anim_trees_group_3(anim_object_t &object, anim_param_t &param)
     return false;
 }
 
-bool anim_may(anim_object_t &object, anim_param_t &param)
+bool anim_may_begin(anim_object_t &object, anim_param_t &param)
 {
     if (!param.init)
     {
@@ -112,33 +131,44 @@ bool anim_may(anim_object_t &object, anim_param_t &param)
     }
     if (param.count <= 80)
         --GROUP->pos2.x;
-    else if (param.count <= 200 && (param.count & 7) == 0)
+    else if ((param.count & 7) == 0)
         ++GROUP->pos2.x;
-    else if (param.count >= 200 && param.count <= 390)
-        --GROUP->pos2.x;
-    else if (param.count >= 390 && param.count <= 575)
-        ++GROUP->pos2.x;
-    else if (param.count >= 730)
-        GROUP->pos2.x -= 2;
-    
-
-    if ((param.count & 7) == 0)
-    {
-        if (GROUP->pos2.y != 0)
-            GROUP->pos2.y = 0;
-        else
-        {
-            int rand = Random() & 3;
-            if (rand == 0)
-                GROUP->pos2.y = -1;
-            else if (rand == 1)
-                GROUP->pos2.y = 1;
-            else
-                GROUP->pos2.y = 0;
-        }
-    }
-
+    update_may_y_pos(GROUP->pos2.y, param.count);
     ++param.count;
+    return false;
+}
+
+bool anim_may_bike(anim_object_t &object, anim_param_t &param)
+{
+    --GROUP->pos2.x;
+    update_may_y_pos(GROUP->pos2.y, param.count);
+    ++param.count;
+    return false;
+}
+
+bool anim_may_see_latios(anim_object_t &object, anim_param_t &param)
+{
+    if (GROUP->pos2.x <= - 80)
+    {
+        ++GROUP->pos2.x;
+        update_may_y_pos(GROUP->pos2.y, param.count);   
+    }
+    else
+        return true;
+    ++param.count;
+    return false;
+}
+
+bool anim_may_bike_fast(anim_object_t &object, anim_param_t &param)
+{
+    GROUP->pos2.x -= 2;
+    update_may_y_pos(GROUP->pos2.y, param.count);
+    ++param.count;
+    if(GROUP->pos2.x <= - 300)
+    {
+        delete GROUP;
+        return true;
+    }
     return false;
 }
 
