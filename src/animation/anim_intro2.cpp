@@ -4,6 +4,7 @@
 #include "Fixed.h"
 #include "Sprite.h"
 #include "trig.h"
+#include "random.h"
 #include "register.h"
 
 #include "mgba.h"
@@ -109,6 +110,35 @@ bool anim_may(anim_object_t &object, anim_param_t &param)
         GROUP->sprite[1]->setShape(HORIZONTAL, SIZE_64, AFFINE_DISABLE);
         param.init = true;
     }
+    if (param.count <= 80)
+        --GROUP->pos2.x;
+    else if (param.count <= 200 && (param.count & 7) == 0)
+        ++GROUP->pos2.x;
+    else if (param.count >= 200 && param.count <= 390)
+        --GROUP->pos2.x;
+    else if (param.count >= 390 && param.count <= 575)
+        ++GROUP->pos2.x;
+    else if (param.count >= 730)
+        GROUP->pos2.x -= 2;
+    
+
+    if ((param.count & 7) == 0)
+    {
+        if (GROUP->pos2.y != 0)
+            GROUP->pos2.y = 0;
+        else
+        {
+            int rand = Random() & 3;
+            if (rand == 0)
+                GROUP->pos2.y = -1;
+            else if (rand == 1)
+                GROUP->pos2.y = 1;
+            else
+                GROUP->pos2.y = 0;
+        }
+    }
+
+    ++param.count;
     return false;
 }
 
