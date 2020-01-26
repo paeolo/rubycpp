@@ -1,6 +1,6 @@
 ## RubyCPP
 
-Based on the PRET Repository. This is my own attempt to rewrite ruby's code in C++, my first goal being to get the complete introduction cinematic working since it will throw the base of the code.
+Based on the PRET Repository. This is my own attempt to rewrite the gameboy advance game pokemon ruby in C++, my first goal being to get the complete introduction cinematic working since it will throw the base of the code.
 
 ## What's now?
 
