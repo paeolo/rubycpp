@@ -4,7 +4,7 @@ Based on the PRET Repository. This is my own attempt to rewrite the gameboy adva
 
 ## What's now?
 
-So far, I recoded 2/3 of the introduction cinematic. So the real game is coming very soon;)
+So far, I recoded 2/3 of the introduction cinematic.
 
 ## What's next
 
