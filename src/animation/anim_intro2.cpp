@@ -7,7 +7,38 @@
 #include "random.h"
 #include "register.h"
 
-#include "mgba.h"
+static const CMDAnim treadle_bike[] =
+{
+    CMD_FRAME(0, 8),
+    CMD_FRAME(32, 8),
+    CMD_FRAME(64, 8),
+    CMD_FRAME(96, 8),
+    CMD_JUMP(0)
+};
+static const CMDAnim treadle_may[] =
+{
+    CMD_FRAME(0, 4),
+    CMD_FRAME(64, 4),
+    CMD_FRAME(128, 4),
+    CMD_FRAME(192, 4),
+    CMD_JUMP(0)
+};
+
+static const CMDAnim may_see_latios_1[] =
+{
+    CMD_FRAME(256, 4),
+    CMD_FRAME(320, 4),
+    CMD_FRAME(384, 4),
+    CMD_END
+};
+
+static const CMDAnim may_see_latios_2[] =
+{
+    CMD_FRAME(384, 16),
+    CMD_FRAME(320, 16),
+    CMD_FRAME(256, 16),
+    CMD_END
+};
 
 static int bg_y_pos = 0;
 
@@ -127,6 +158,8 @@ bool anim_may_begin(anim_object_t &object, anim_param_t &param)
         GROUP->mode = GroupMode::OFFSET;
         GROUP->sprite[0]->setShape(SQUARE, SIZE_64, AFFINE_DISABLE);
         GROUP->sprite[1]->setShape(HORIZONTAL, SIZE_64, AFFINE_DISABLE);
+        GROUP->sprite[0]->start(treadle_may);
+        GROUP->sprite[1]->start(treadle_bike);
         param.init = true;
     }
     if (param.count <= 80)
@@ -148,23 +181,36 @@ bool anim_may_bike(anim_object_t &object, anim_param_t &param)
 
 bool anim_may_see_latios(anim_object_t &object, anim_param_t &param)
 {
-    if (GROUP->pos2.x <= - 80)
+    if (!param.init)
+    {
+        GROUP->sprite[0]->start(may_see_latios_1);
+        param.init = true;
+    }
+    if (GROUP->pos2.x <= -80)
     {
         ++GROUP->pos2.x;
-        update_may_y_pos(GROUP->pos2.y, param.count);   
+        update_may_y_pos(GROUP->pos2.y, param.count);
     }
     else
+    {
+        GROUP->sprite[0]->start(may_see_latios_2);
         return true;
+    }
     ++param.count;
     return false;
 }
 
 bool anim_may_bike_fast(anim_object_t &object, anim_param_t &param)
 {
+    if (!param.init)
+    {
+        GROUP->sprite[0]->start(treadle_may);
+        param.init = true;
+    }
     GROUP->pos2.x -= 2;
     update_may_y_pos(GROUP->pos2.y, param.count);
     ++param.count;
-    if(GROUP->pos2.x <= - 300)
+    if (GROUP->pos2.x <= -300)
     {
         delete GROUP;
         return true;

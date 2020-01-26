@@ -79,6 +79,7 @@ void Sprite::update(pos_t offset)
 {
     if (this->visible)
     {
+        this->routine();
         entry.tileNum = _tile + tileOffset;
         entry.priority = _priority;
         entry.x = this->pos1.x + this->pos2.x + offset.x + _center.x;

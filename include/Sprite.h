@@ -5,6 +5,7 @@
 #include <gba_base.h>
 
 #include "Affine.h"
+#include "Animated.h"
 #include "Background.h"
 #include "Fixed.h"
 #include "Sortable.h"
@@ -90,7 +91,7 @@ typedef union OAM_t
 #define OAM_RAM (*(volatile OAM_t *) 0x7000000)
 #define OAM_SIZE 0x400
 
-class Sprite final : public Affine, public Sortable
+class Sprite final : public Affine, public Sortable, public Animated
 {
 	public:
 		void * operator new(std::size_t size);
@@ -100,7 +101,6 @@ class Sprite final : public Affine, public Sortable
 		Sprite(int paletteNum, int tileNum, int tag = -1, int priority = 0, bool insert_updater = true);
 		
 		ObjectEntry entry = ObjectEntry();
-		int tileOffset = 0;
 
 		void update();
 		void update(pos_t offset);
