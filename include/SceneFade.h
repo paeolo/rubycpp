@@ -19,6 +19,9 @@ class SceneFade : public Scene
 
     private:
         void routine();
+        void parseNode(Parser &p);
+        void init_Palette(Parser &p);
+        
         Color _color = BLACK;
         int _fader = 0;
         int _fadeType = NORMAL;

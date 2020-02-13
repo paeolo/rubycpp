@@ -30,7 +30,7 @@ namespace Allocator
         int getByTag(int tag);
         void setByTag(int tag, int paletteNum);
         void eraseTag(int tag);
-        int allocate(const char* tileName);
+        int allocate();
         void deallocate(int paletteNum);
     }
     namespace Tile

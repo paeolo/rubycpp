@@ -2,6 +2,7 @@
 #include "Animation.h"
 #include "File.h"
 #include "Parser.h"
+#include "register.h"
 #include "Scene.h"
 #include "SceneAnimation.h"
 #include "Sprite.h"
@@ -24,17 +25,11 @@ void SceneAnimation::init()
         {
             switch (p.node())
             {
-                case ParserNode::NODE_PALETTE:
-                    Scene::init_Palette(p);
-                    break;
-                case ParserNode::NODE_GROUP:
-                    Scene::init_Group(p);
-                    break;
-                case ParserNode::NODE_SPRITE:
-                    Scene::init_Sprite(p);
-                    break;
                 case ParserNode::NODE_ANIMATION:
                     this->init_Animation(p, previous);
+                    break;
+                default:
+                    Scene::parseNode(p);
                     break;
             }
         }

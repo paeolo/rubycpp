@@ -38,7 +38,8 @@ class Palette
 {
   public:
     static void Copy(int source, int destination, int offset);
-    static void Load(const char* paletteName, int position);
+    static void LoadToData(const char* paletteName, int position);
+    static void LoadToBuffer(const char* paletteName, int position);
     static void FillData(const Color color);
     static void FillBuffer(const Color color);
     static void Flush();

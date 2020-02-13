@@ -19,6 +19,9 @@ class Scene : public Updatable
         const char* _sceneName = nullptr;
         bool _end = false;
 
+        virtual void parseNode(Parser &p);
+        
+    private:
         void init_Palette(Parser &p);
         void init_Tile(Parser &p);
         void init_Background(Parser &p);

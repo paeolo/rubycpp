@@ -33,11 +33,18 @@ void Palette::Copy(int source, int destination, int offset)
     );
 }
 
-void Palette::Load(const char* paletteName, int position)
+void Palette::LoadToData(const char* paletteName, int position)
 {
     File file(paletteName, FileType::GBAPAL);
     if(file.exists())
         file.copyTo(&Palette::data[16*position]);
+}
+
+void Palette::LoadToBuffer(const char* paletteName, int position)
+{
+    File file(paletteName, FileType::GBAPAL);
+    if(file.exists())
+        file.copyTo(&Palette::buffer[16*position]);
 }
 
 void Palette::FillData(const Color color)

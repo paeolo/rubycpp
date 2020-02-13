@@ -101,9 +101,8 @@ void Allocator::Palette::eraseTag(int tag)
 { 
     paletteMap[tag & (PALETTE_MAP_SIZE -1)] = -1;
 }
-int Allocator::Palette::allocate(const char* tileName)
+int Allocator::Palette::allocate()
 {
-    ::Palette::Load(tileName, 16 + paletteNum);
     return paletteNum++;
 }
 void Allocator::Palette::deallocate(int paletteNum) { }
