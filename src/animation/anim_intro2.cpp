@@ -2,10 +2,11 @@
 #include "Animation.h"
 #include "anim.h"
 #include "Fixed.h"
-#include "Sprite.h"
-#include "trig.h"
+#include "Palette.h"
 #include "random.h"
 #include "register.h"
+#include "Sprite.h"
+#include "trig.h"
 
 static const CMDAnim treadle_bike[] =
 {
@@ -252,5 +253,29 @@ bool anim_latios(anim_object_t &object, anim_param_t &param)
     }
     param.theta += 4;
     GROUP->pos2.y = 8 * Sin(param.theta) - bg_y_pos;
+    return false;
+}
+
+bool anim_fade(anim_object_t &object, anim_param_t &param)
+{
+    if (!param.init)
+    {
+        for (int i= 0; i < 0x200; ++i)
+            Palette::data[i] = Palette::buffer[i];
+
+        param.rho = 0;
+        param.count = 0;
+        param.init = true;
+    }
+    if (param.count % 20 == 0)
+    {
+        ++param.rho;
+        for (int i= 0; i < 0x200; ++i)
+            Palette::buffer[i] = Color::centroid(Palette::data[i], BLANK, (param.rho << 2));
+    }
+    if (param.rho == 8)
+        return true;
+
+    ++param.count;
     return false;
 }

@@ -12,5 +12,6 @@ TAG(104) anim_may_bike(anim_object_t &object, anim_param_t &param);
 TAG(105) anim_may_see_latios(anim_object_t &object, anim_param_t &param);
 TAG(106) anim_may_bike_fast(anim_object_t &object, anim_param_t &param);
 TAG(107) anim_latios(anim_object_t &object, anim_param_t &param);
+TAG(108) anim_fade(anim_object_t &object, anim_param_t &param);
 
 #endif

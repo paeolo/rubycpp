@@ -21,5 +21,6 @@ const anim_t anim[] =
     anim_may_bike,
     anim_may_see_latios,
     anim_may_bike_fast,
-    anim_latios
+    anim_latios,
+    anim_fade
 };
