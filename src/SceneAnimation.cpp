@@ -9,6 +9,14 @@
 
 SceneAnimation::SceneAnimation(const char* sceneName): Scene(sceneName) {}
 
+SceneAnimation::~SceneAnimation()
+{
+    for(auto it = _timeline.begin(); it != _timeline.end(); ++it)
+        delete (*it).animation;
+    for(auto it = _activeAnim.begin(); it != _activeAnim.end(); ++it)
+        delete (*it);
+}
+
 void SceneAnimation::init()
 {
     this->_active = true;
@@ -52,11 +60,16 @@ void SceneAnimation::routine()
     {        
         if((*it)->end())
         {
-            Animation* animation = (*it)->next;
-            delete *it;
-            it = _activeAnim.erase(it);
-            if(animation)
-                this->activate(animation);
+            if ((*it)->endScene)
+                this->_end = true;
+            else
+            {
+                Animation* animation = (*it)->next;
+                delete *it;
+                it = _activeAnim.erase(it);
+                if(animation)
+                    this->activate(animation);
+            }
         }
         else
             (*it)->routine();
@@ -118,6 +131,9 @@ void SceneAnimation::init_Animation(Parser &p, Animation* &previous)
             p.value(ANIM_ANIM)
         );  
     }
+
+    if(p.exists(ANIM_END_SCENE))
+        animation->endScene = true;
 
     if(p.exists(ANIM_PARAMETER))
         animation->parameter = p.value(ANIM_PARAMETER);

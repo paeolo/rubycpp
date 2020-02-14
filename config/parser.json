@@ -67,6 +67,7 @@
             "delay",
             "next",
             "prempt",
+            "endScene",
             "sprite",
             "group",
             "parameter"

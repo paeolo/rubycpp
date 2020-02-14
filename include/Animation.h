@@ -21,9 +21,11 @@ class Animation
 
         anim_object_t object = anim_object_t();
         int parameter = -1;
+
+        int delay = 0;
+        bool endScene = false;
         Animation* previous = nullptr;
         Animation* next = nullptr;
-        int delay = 0;
 
     private:
         anim_t _anim = nullptr;

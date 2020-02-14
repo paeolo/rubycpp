@@ -273,8 +273,11 @@ bool anim_fade(anim_object_t &object, anim_param_t &param)
         for (int i= 0; i < 0x200; ++i)
             Palette::buffer[i] = Color::centroid(Palette::data[i], BLANK, (param.rho << 2));
     }
-    if (param.rho == 8)
+    if (param.rho == 8) {
+        for (int i= 0; i < 0x200; ++i)
+            Palette::data[i] = BLANK;
         return true;
+    }
 
     ++param.count;
     return false;

@@ -17,6 +17,8 @@ class SceneAnimation: public Scene
     public:
         SceneAnimation() = default;
         SceneAnimation(const char* sceneName);
+        ~SceneAnimation();
+        
         void init();
         void insert(int time, Animation* animation);
 

@@ -75,6 +75,7 @@ enum AnimationKey
     ANIM_DELAY,
     ANIM_NEXT,
     ANIM_PREMPT,
+    ANIM_END_SCENE,
     ANIM_SPRITE,
     ANIM_GROUP,
     ANIM_PARAMETER
