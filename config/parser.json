@@ -37,7 +37,8 @@
             "priority",
             "size",
             "x",
-            "y"
+            "y",
+            "reset"
         ],
         "group":
         [

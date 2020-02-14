@@ -11,6 +11,8 @@
     ],
     "background":
     [
+        "RESET",
+        {"reset": true},
         "COPYRIGHT",
         { "file": "copyright", "position": 0, "priority": 0, "char": 0, "map": 7}
     ]

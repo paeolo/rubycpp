@@ -24,6 +24,8 @@
     ],
     "background":
     [
+        "RESET",
+        {"reset": true},
         "TREES",
         {"file": "intro2_trees", "position": 2, "priority": 2, "char": 0, "map": 6},
         {"file": "intro2_grass", "position": 1, "priority": 0, "char": 1, "map": 16},

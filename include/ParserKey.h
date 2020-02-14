@@ -42,7 +42,8 @@ enum BackgroundKey
     BG_PRIORITY,
     BG_SIZE,
     BG_X,
-    BG_Y
+    BG_Y,
+    BG_RESET
 };
 
 enum GroupKey

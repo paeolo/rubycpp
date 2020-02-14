@@ -27,7 +27,6 @@ void Scene::init()
     this->_active = true;
     if (this->_sceneName)
     {
-        LCD.DISPCNT = DISPCNT::MODE_0 | DISPCNT::OBJ_1D_MAP | DISPCNT::OBJ_ON;
         File file(this->_sceneName, FileType::JSON);
         if (!file.exists())
             return;
@@ -92,17 +91,22 @@ void Scene::init_Tile(Parser &p)
 
 void Scene::init_Background(Parser &p)
 {
+    if (p.value(BG_RESET))
+        LCD.DISPCNT = DISPCNT::MODE_0 | DISPCNT::OBJ_1D_MAP | DISPCNT::OBJ_ON;
     if (p.exists(BG_FILE))
         Background::LoadTileMap(p.string(BG_FILE), p.value(BG_MAP), 0);
-    BGXCNT[p.value(BG_POSITION)] =
-        (p.value(BG_PRIORITY) |
-         p.value(BG_CHAR) << 2 |
-         p.value(BG_COLOR) << 7 |
-         p.value(BG_MAP) << 8 |
-         p.value(BG_SIZE) << 14);
-    BGOFS[p.value(BG_POSITION)].x = p.value(BG_X);
-    BGOFS[p.value(BG_POSITION)].y = p.value(BG_Y);
-    LCD.DISPCNT |= 1 << (8 + p.value(BG_POSITION));
+    if (p.exists(BG_POSITION))
+    {
+        BGXCNT[p.value(BG_POSITION)] =
+            (p.value(BG_PRIORITY) |
+            p.value(BG_CHAR) << 2 |
+            p.value(BG_COLOR) << 7 |
+            p.value(BG_MAP) << 8 |
+            p.value(BG_SIZE) << 14);
+        BGOFS[p.value(BG_POSITION)].x = p.value(BG_X);
+        BGOFS[p.value(BG_POSITION)].y = p.value(BG_Y);
+        LCD.DISPCNT |= 1 << (8 + p.value(BG_POSITION));
+    }
 }
 
 void Scene::init_Group(Parser &p)

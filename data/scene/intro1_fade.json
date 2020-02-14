@@ -18,6 +18,8 @@
     ],
     "background":
     [
+        "RESET",
+        {"reset": true},
         "LEAVES",
         {"file": "intro1_bg0", "position": 0, "priority": 0, "char": 0, "map": 16, "size": 2, "y": 40},
         {"file": "intro1_bg1", "position": 1, "priority": 1, "char": 0, "map": 18, "size": 2, "y": 24},

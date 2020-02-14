@@ -132,7 +132,7 @@ void SceneAnimation::init_Animation(Parser &p, Animation* &previous)
         );  
     }
 
-    if(p.exists(ANIM_END_SCENE))
+    if(p.value(ANIM_END_SCENE))
         animation->endScene = true;
 
     if(p.exists(ANIM_PARAMETER))
