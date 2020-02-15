@@ -8,7 +8,7 @@ include $(DEVKITARM)/gba_rules
 
 TARGET		:=	output
 BUILD		:=	build
-EXTENSION   :=  4bpp gbapal gbabg json
+EXTENSION   :=  4bpp 8bpp gbapal gbabg json
 
 #---------------------------------------------------------------------------------
 # options for code generation

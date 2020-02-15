@@ -5,6 +5,7 @@
 #include <gba_types.h>
 
 extern GBFS_FILE _4bpp_gbfs;
+extern GBFS_FILE _8bpp_gbfs;
 extern GBFS_FILE gbapal_gbfs;
 extern GBFS_FILE gbabg_gbfs;
 extern GBFS_FILE json_gbfs;
@@ -12,6 +13,7 @@ extern GBFS_FILE json_gbfs;
 static const GBFS_FILE* _gbfs[] =
 {
     &_4bpp_gbfs,
+    &_8bpp_gbfs,
     &gbapal_gbfs,
     &gbabg_gbfs,
     &json_gbfs

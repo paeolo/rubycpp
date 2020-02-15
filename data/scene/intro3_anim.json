@@ -1,0 +1,24 @@
+{
+    "palette":
+    [
+        "BACKGROUND",
+        {"file": "intro3_pokeball", "position": 0}
+    ],
+    "tile":
+    [
+        "BACKGROUND",
+        {"file": "intro3_pokeball", "char": 0}
+    ],
+    "background":
+    [
+        "RESET",
+        {"reset": true},
+        "TREES",
+        {"file": "intro3_pokeball", "position": 2, "priority": 0, "char": 0, "map": 0}
+    ],
+    "animation":
+    [
+        "SCROLL BACKGROUND",
+        { "anim": 19, "begin": 0}
+    ]
+}

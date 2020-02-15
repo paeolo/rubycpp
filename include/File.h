@@ -7,6 +7,7 @@
 enum FileType
 {
   BPP4,
+  BPP8,
   GBAPAL,
   GBABG,
   JSON

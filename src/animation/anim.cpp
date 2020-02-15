@@ -1,6 +1,7 @@
 #include "anim.h"
 #include "anim_intro1.h"
 #include "anim_intro2.h"
+#include "anim_intro3.h"
 
 const anim_t anim[] =
 {
@@ -22,5 +23,6 @@ const anim_t anim[] =
     anim_may_see_latios,
     anim_may_bike_fast,
     anim_latios,
-    anim_fade
+    anim_fade,
+    anim_background_pokeball
 };
