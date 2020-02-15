@@ -8,6 +8,25 @@ Animation::Animation(int objectTag, int objectType, int animTag)
     _anim = anim[animTag];
 }
 
+Animation::~Animation()
+{
+    if (!this->_end)
+    {
+        if (_objectType != -1)
+        {
+            switch(_objectType)
+            {
+                case ObjectType::OBJECT_SPRITE:
+                    delete object.sprite;
+                    break;
+                case ObjectType::OBJECT_SPRITE_GROUP:
+                    delete object.group;
+                    break;
+            }      
+        }
+    }
+}
+
 void Animation::init()
 {
     if (_objectTag != -1)
@@ -18,7 +37,6 @@ void Animation::init()
                 object.sprite = Allocator::Sprite::getByTag(_objectTag);
                 break;
             case ObjectType::OBJECT_SPRITE_GROUP:
-
                 object.group = Allocator::SpriteGroup::getByTag(_objectTag);
                 break;
         }

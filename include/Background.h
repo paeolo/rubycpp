@@ -37,6 +37,7 @@ class Background
 {
   public:
     static void LoadTile4(const char* tileName, int charBlock, int tileNumber);
+    static void LoadTile8(const char* tileName, int charBlock, int tileNumber);
     static void LoadTileMap(const char* tileMapName, int screenBlock, int entryNumber);
 };
 

@@ -1,10 +1,16 @@
 #include "Background.h"
 #include "File.h"
 
-
 void Background::LoadTile4(const char* tileName, int charBlock, int tileNumber)
 {
     File file(tileName, FileType::BPP4);
+    if(file.exists())
+        file.copyTo(&BACKGROUND.charBlock[charBlock][tileNumber]);
+}
+
+void Background::LoadTile8(const char* tileName, int charBlock, int tileNumber)
+{
+    File file(tileName, FileType::BPP8);
     if(file.exists())
         file.copyTo(&BACKGROUND.charBlock[charBlock][tileNumber]);
 }

@@ -12,8 +12,9 @@ bool anim_background_pokeball(anim_object_t &object, anim_param_t &param)
 {
     if (!param.init)
     {
+        LCD.DISPCNT |= DISPCNT::MODE_1;
+        LCD.DISPCNT |= 1 << (8 + 2);
         param.init = true;
-        return false;
     }
     return true;
 }

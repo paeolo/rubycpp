@@ -14,6 +14,8 @@ class Animation
 {
     public:
         Animation(int objectTag, int objectType, int animTag);
+        ~Animation();
+        
         void init();
         void routine();
         void preempt();

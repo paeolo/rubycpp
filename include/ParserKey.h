@@ -29,7 +29,8 @@ enum TileKey
 {
     TILE_CHAR,
     TILE_FILE,
-    TILE_TAG
+    TILE_TAG,
+    TILE_8BPP
 };
 
 enum BackgroundKey
@@ -43,7 +44,8 @@ enum BackgroundKey
     BG_SIZE,
     BG_X,
     BG_Y,
-    BG_RESET
+    BG_RESET,
+    BG_HIDDEN
 };
 
 enum GroupKey

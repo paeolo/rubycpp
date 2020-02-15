@@ -7,18 +7,18 @@
     "tile":
     [
         "BACKGROUND",
-        {"file": "intro3_pokeball", "char": 0}
+        {"file": "intro3_pokeball", "char": 0, "8bpp": true}
     ],
     "background":
     [
         "RESET",
         {"reset": true},
-        "TREES",
-        {"file": "intro3_pokeball", "position": 2, "priority": 0, "char": 0, "map": 0}
+        "POKEBALL",
+        {"file": "intro3_pokeball", "position": 2, "priority": 3, "char": 0, "map": 16, "color": 1, "size": 1, "hidden": true}
     ],
     "animation":
     [
         "SCROLL BACKGROUND",
-        { "anim": 19, "begin": 0}
+        { "anim": 19, "begin": 120}
     ]
 }

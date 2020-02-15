@@ -86,7 +86,12 @@ void Scene::init_Tile(Parser &p)
         Allocator::Tile::setByTag(p.value(TILE_TAG), tileNum);
     }
     else
-        Background::LoadTile4(p.string(TILE_FILE), p.value(TILE_CHAR), 0);
+    {
+        if (p.value(TILE_8BPP))
+            Background::LoadTile8(p.string(TILE_FILE), p.value(TILE_CHAR), 0);
+        else
+            Background::LoadTile4(p.string(TILE_FILE), p.value(TILE_CHAR), 0);
+    }
 }
 
 void Scene::init_Background(Parser &p)
@@ -105,7 +110,8 @@ void Scene::init_Background(Parser &p)
             p.value(BG_SIZE) << 14);
         BGOFS[p.value(BG_POSITION)].x = p.value(BG_X);
         BGOFS[p.value(BG_POSITION)].y = p.value(BG_Y);
-        LCD.DISPCNT |= 1 << (8 + p.value(BG_POSITION));
+        if(!p.value(BG_HIDDEN))
+            LCD.DISPCNT |= 1 << (8 + p.value(BG_POSITION));
     }
 }
 

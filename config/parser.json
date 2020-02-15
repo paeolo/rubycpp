@@ -25,7 +25,8 @@
         [
             "char",
             "file",
-            "tag"
+            "tag",
+            "8bpp"
         ],
         "background":
         [
@@ -38,7 +39,8 @@
             "size",
             "x",
             "y",
-            "reset"
+            "reset",
+            "hidden"
         ],
         "group":
         [
