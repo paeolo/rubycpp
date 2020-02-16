@@ -18,7 +18,7 @@
     ],
     "animation":
     [
-        "SCROLL BACKGROUND",
-        { "anim": 19, "begin": 120}
+        "POKEBALL_SPIN",
+        { "anim": 19, "begin": 60}
     ]
 }
