@@ -3,8 +3,7 @@
 
 #include <gba_types.h>
 #include <gba_base.h>
-
-#include "Fixed.h"
+#include <gba_affine.h>
 
 /* TILE */
 
@@ -47,7 +46,7 @@ class Background
     static void LoadTile4(const char* tileName, int charBlock, int tileNumber);
     static void LoadTile8(const char* tileName, int charBlock, int tileNumber);
     static void LoadTileMap(const char* tileMapName, int screenBlock, int entryNumber);
-    static void rotate(Fixed x, Fixed y, Fixed rho, int theta, AffineBG bg);
+    static void AffineSet(BGAffineSource &source, AffineBG background);
 };
 
 #endif

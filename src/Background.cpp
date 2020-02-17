@@ -1,7 +1,7 @@
 #include "Background.h"
 #include "File.h"
 #include "register.h"
-#include "trig.h"
+
 
 void Background::LoadTile4(const char* tileName, int charBlock, int tileNumber)
 {
@@ -24,10 +24,14 @@ void Background::LoadTileMap(const char* tileMapName, int screenBlock, int entry
         file.copyTo(&BACKGROUND.screenBlock[screenBlock][entryNumber]);
 }
 
-void Background::rotate(Fixed x, Fixed y, Fixed rho, int theta, AffineBG bg)
+void Background::AffineSet(BGAffineSource &source, AffineBG background)
 {
-    BGAFF[bg].A = Cos(theta).raw;
-    BGAFF[bg].B = Sin(theta).raw;
-    BGAFF[bg].C = - Sin(theta).raw;
-    BGAFF[bg].D = Cos(theta).raw;
+    BGAffineDest dest;
+    BgAffineSet(&source, &dest, 1);
+    BGAFF[background].A = dest.pa;
+    BGAFF[background].B = dest.pb;
+    BGAFF[background].C = dest.pc;
+    BGAFF[background].D = dest.pd;
+    BGAFF[background].X = dest.x;
+    BGAFF[background].Y = dest.y;
 }

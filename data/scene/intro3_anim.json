@@ -19,6 +19,6 @@
     "animation":
     [
         "POKEBALL_SPIN",
-        { "anim": 19, "begin": 60}
+        { "anim": 19, "begin": 0}
     ]
 }
