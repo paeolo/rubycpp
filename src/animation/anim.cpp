@@ -24,5 +24,7 @@ const anim_t anim[] =
     anim_may_bike_fast,
     anim_latios,
     anim_fade,
-    anim_background_pokeball
+    anim_background_pokeball,
+    anim_pokeball_fade_in,
+    anim_pokeball_fade_out
 };

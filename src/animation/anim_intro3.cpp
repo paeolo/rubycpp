@@ -36,3 +36,39 @@ bool anim_background_pokeball(anim_object_t &object, anim_param_t &param)
     ++param.lambda[1];
     return false;
 }
+
+bool anim_pokeball_fade_in(anim_object_t &object, anim_param_t &param)
+{
+    if (!param.init)
+    {
+        for (int i= 0; i < 0x10; ++i)
+            Palette::data[i] = Palette::buffer[i];
+
+        param.rho = 0;
+        param.count = 0;
+        param.init = true;
+    }
+
+    ++param.rho;
+    for (int i= 0; i < 0x10; ++i)
+        Palette::buffer[i] = Color::centroid(BLANK, Palette::data[i], (param.rho << 1));
+
+    if (param.rho == 16)
+        return true;
+
+    ++param.count;
+    return false;
+}
+
+bool anim_pokeball_fade_out(anim_object_t &object, anim_param_t &param)
+{
+    ++param.rho;
+    for (int i= 0; i < 0x10; ++i)
+        Palette::buffer[i] = Color::centroid(Palette::data[i], BLANK, (param.rho << 1));
+    
+    if (param.rho == 16)
+        return true;
+
+    ++param.count;
+    return false;
+}
