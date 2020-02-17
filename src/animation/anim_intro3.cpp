@@ -16,5 +16,7 @@ bool anim_background_pokeball(anim_object_t &object, anim_param_t &param)
         LCD.DISPCNT |= 1 << (8 + 2);
         param.init = true;
     }
-    return true;
+    Background::rotate(Fixed(1.0), Fixed(1.0), Fixed(1.0), param.count, AffineBG::BG_AFFINE_0);
+    ++param.count;
+    return false;
 }

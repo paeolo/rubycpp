@@ -4,7 +4,9 @@
 #include <gba_types.h>
 #include <gba_base.h>
 
-/* TILE*/
+#include "Fixed.h"
+
+/* TILE */
 
 typedef struct Tile4
 {
@@ -33,12 +35,19 @@ typedef union BACKGROUND_t
 #define BACKGROUND (*(volatile BACKGROUND_t *) 0x6000000)
 #define BACKGROUND_SIZE 0x10000
 
+enum AffineBG
+{
+  BG_AFFINE_0 = 0,
+  BG_AFFINE_1 = 1
+};
+
 class Background
 {
   public:
     static void LoadTile4(const char* tileName, int charBlock, int tileNumber);
     static void LoadTile8(const char* tileName, int charBlock, int tileNumber);
     static void LoadTileMap(const char* tileMapName, int screenBlock, int entryNumber);
+    static void rotate(Fixed x, Fixed y, Fixed rho, int theta, AffineBG bg);
 };
 
 #endif

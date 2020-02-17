@@ -12,6 +12,7 @@ extern "C" {
 #define SYS (*(volatile struct REG_SYS *) 0x4000200)
 #define BGXCNT ((volatile u16 *) 0x4000008)
 #define BGOFS ((volatile struct REG_BGOFS*) 0x4000010)
+#define BGAFF ((volatile struct REG_BGAFF*) 0x4000020)
 
 /* LCD */
 
@@ -33,16 +34,16 @@ struct REG_LCD
     u16  BG2VOFS;   // BG2 Y-Offset
     u16  BG3HOFS;   // BG3 X-Offset
     u16  BG3VOFS;   // BG3 Y-Offset
-    u16  BG2PA;     // BG2 Rotation/Scaling Parameter A (dx)
-    u16  BG2PB;     // BG2 Rotation/Scaling Parameter B (dmx)
-    u16  BG2PC;     // BG2 Rotation/Scaling Parameter C (dy)
-    u16  BG2PD;     // BG2 Rotation/Scaling Parameter D (dmy)
+    s16  BG2PA;     // BG2 Rotation/Scaling Parameter A (dx)
+    s16  BG2PB;     // BG2 Rotation/Scaling Parameter B (dmx)
+    s16  BG2PC;     // BG2 Rotation/Scaling Parameter C (dy)
+    s16  BG2PD;     // BG2 Rotation/Scaling Parameter D (dmy)
     u32  BG2X;      // BG2 Reference Point X-Coordinate
     u32  BG2Y;      // BG2 Reference Point Y-Coordinate
-    u16  BG3PA;     // BG3 Rotation/Scaling Parameter A (dx)
-    u16  BG3PB;     // BG3 Rotation/Scaling Parameter B (dmx)
-    u16  BG3PC;     // BG3 Rotation/Scaling Parameter C (dy)
-    u16  BG3PD;     // BG3 Rotation/Scaling Parameter D (dmy)
+    s16  BG3PA;     // BG3 Rotation/Scaling Parameter A (dx)
+    s16  BG3PB;     // BG3 Rotation/Scaling Parameter B (dmx)
+    s16  BG3PC;     // BG3 Rotation/Scaling Parameter C (dy)
+    s16  BG3PD;     // BG3 Rotation/Scaling Parameter D (dmy)
     u32  BG3X;      // BG3 Reference Point X-Coordinate
     u32  BG3Y;      // BG3 Reference Point Y-Coordinate
     u16  WIN0H;     // Window 0 Horizontal Dimensions
@@ -87,6 +88,16 @@ struct REG_BGOFS
 {
     u16 x;
     u16 y;
+};
+
+struct REG_BGAFF
+{
+    s16 A;     // Rotation/Scaling Parameter A (dx)
+    s16 B;     // Rotation/Scaling Parameter B (dmx)
+    s16 C;     // Rotation/Scaling Parameter C (dy)
+    s16 D;     // Rotation/Scaling Parameter D (dmy)
+    u32 X;      // Reference Point X-Coordinate
+    u32 Y;      // Reference Point Y-Coordinate
 };
 
 enum BLDCNT
