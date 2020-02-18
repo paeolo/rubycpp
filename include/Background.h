@@ -23,6 +23,14 @@ typedef struct Entry
 typedef Tile4 CharBlock[512];
 typedef Entry ScreenBlock[32][32];
 
+enum ColorNumber
+{
+  COLOR_0, COLOR_1, COLOR_2, COLOR_3,
+  COLOR_4, COLOR_5, COLOR_6, COLOR_7,
+  COLOR_8, COLOR_9, COLOR_10, COLOR_11,
+  COLOR_12, COLOR_13, COLOR_14, COLOR_15,
+};
+
 /* BACKGROUND */
 
 typedef union BACKGROUND_t
@@ -44,6 +52,7 @@ class Background
 {
   public:
     static void LoadTile4(const char* tileName, int charBlock, int tileNumber);
+    static void CreateTile4(ColorNumber colorNumber, int charBlock, int tileNumber);
     static void LoadTile8(const char* tileName, int charBlock, int tileNumber);
     static void LoadTileMap(const char* tileMapName, int screenBlock, int entryNumber);
     static void AffineSet(BGAffineSource &source, AffineBG background);
