@@ -3,6 +3,6 @@
 
 #include "anim.h"
 
-TAG(100) anim_plip_ploup(anim_object_t &object, anim_param_t &param);
+TAG(100) anim_background_red(anim_object_t &object, anim_param_t &param);
 
 #endif
