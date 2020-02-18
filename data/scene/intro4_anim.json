@@ -22,7 +22,7 @@
     ],
     "animation":
     [
-        "PLIP PLOUP",
-        { "anim": 22, "begin": 0}
+        "BACKGROUND RED",
+        { "anim": 22, "begin": 10}
     ]
 }
