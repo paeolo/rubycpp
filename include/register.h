@@ -84,6 +84,22 @@ enum BGCNT
 	SIZE_3	  =	(3 << 14)  // Map Size 512x512
 };
 
+enum WIN
+{
+    WIN0_BG0   = (1 << 0),
+    WIN0_BG1   = (1 << 1),
+    WIN0_BG2   = (1 << 2),
+    WIN0_BG3   = (1 << 3),
+    WIN0_OBJ   = (1 << 4),
+    WIN0_COLOR = (1 << 5),
+    WIN1_BG0   = (1 << 8),
+    WIN1_BG1   = (1 << 9),
+    WIN1_BG2   = (1 << 10),
+    WIN1_BG3   = (1 << 11),
+    WIN1_OBJ   = (1 << 12),
+    WIN1_COLOR = (1 << 13)
+};
+
 struct REG_BGOFS
 {
     u16 x;

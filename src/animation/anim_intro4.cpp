@@ -21,7 +21,7 @@ bool anim_background_red(anim_object_t &object, anim_param_t &param)
         param.init = true;
         return false;
     }
-    //LCD.DISPCNT |= 1 << (8 + 2);
+    LCD.DISPCNT |= 1 << (8 + 2);
     return true;
 }
 
@@ -32,9 +32,21 @@ bool anim_background_bands(anim_object_t &object, anim_param_t &param)
         Background::CreateTileMap16(2, 15, 7, 0, 0x80);
         Background::CreateTileMap16(0, 15, 7, 4, 0x180);
         Background::CreateTileMap16(2, 15, 7, 16, 0x80);
+        LCD.WIN0H = 240;
+        LCD.WIN0V = 160;
+        LCD.DISPCNT |= DISPCNT::WIN0_ON;
+        LCD.WININ |= WIN::WIN0_BG2
+        | WIN::WIN0_BG3 
+        | WIN::WIN0_OBJ;
+        LCD.WINOUT = WIN::WIN0_BG0;
+        LCD.DISPCNT |= 1 << (8 + 0);
         param.init = true;
-        return false;
     }
-    LCD.DISPCNT |= 1 << (8 + 0);
-    return true;
+    
+    LCD.WIN0V = (160 - 4*param.count) + ((4*param.count) << 8);
+
+    if (param.count == 8)
+        return true;
+    ++param.count;
+    return false;
 }

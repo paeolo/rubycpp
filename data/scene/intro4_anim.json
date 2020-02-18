@@ -25,6 +25,6 @@
     [
         "BACKGROUND RED",
         { "anim": 22, "begin": 1},
-        { "anim": 23, "begin": 20}
+        { "anim": 23, "begin": 2}
     ]
 }
