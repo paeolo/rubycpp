@@ -31,6 +31,17 @@ void Background::LoadTileMap(const char* tileMapName, int screenBlock, int entry
         file.copyTo(&BACKGROUND.screenBlock[screenBlock][entryNumber]);
 }
 
+void Background::CreateTileMap16(unsigned int tileNum, unsigned int paletteNum, int screenBlock, int size)
+{
+    Entry entry = {
+        .tileNumber = tileNum,
+        .horizontalFlip = 0,
+        .verticalFlip = 0,
+        .paletteNumber = paletteNum
+    };
+    dma::Fill16(3, entry, &BACKGROUND.screenBlock[screenBlock][0], size << 1);
+}
+
 void Background::AffineSet(BGAffineSource &source, AffineBG background)
 {
     BGAffineDest dest;

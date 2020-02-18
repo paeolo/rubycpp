@@ -17,7 +17,8 @@
     "background":
     [
         "RESET",
-        {"reset": true}
+        {"reset": true},
+        {"position": 2, "priority": 3, "char": 0, "map": 6, "hidden": true }
     ],
     "animation":
     [

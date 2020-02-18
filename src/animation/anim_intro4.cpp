@@ -17,6 +17,8 @@ bool anim_plip_ploup(anim_object_t &object, anim_param_t &param)
         Background::CreateTile4(ColorNumber::COLOR_0, 0, 0);
         Background::CreateTile4(ColorNumber::COLOR_1, 0, 1);
         Background::CreateTile4(ColorNumber::COLOR_2, 0, 2);
+        Background::CreateTileMap16(1, 15, 6, 0x280);
+        LCD.DISPCNT |= 1 << (8 + 2);
         param.init = true;
     }
     return true;

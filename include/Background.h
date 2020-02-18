@@ -18,6 +18,10 @@ typedef struct Entry
   unsigned int horizontalFlip:1;
   unsigned int verticalFlip:1;
   unsigned int paletteNumber:4;
+  constexpr operator int() const
+  {
+    return  (paletteNumber << 12) + (verticalFlip << 11) + (horizontalFlip << 10) + tileNumber;
+  }
 } __attribute__((packed, aligned(1))) Entry;
 
 typedef Tile4 CharBlock[512];
@@ -55,6 +59,7 @@ class Background
     static void CreateTile4(ColorNumber colorNumber, int charBlock, int tileNumber);
     static void LoadTile8(const char* tileName, int charBlock, int tileNumber);
     static void LoadTileMap(const char* tileMapName, int screenBlock, int entryNumber);
+    static void CreateTileMap16(unsigned int tileNum, unsigned int paletteNum, int screenBlock, int size);
     static void AffineSet(BGAffineSource &source, AffineBG background);
 };
 
