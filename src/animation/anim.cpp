@@ -28,5 +28,6 @@ const anim_t anim[] =
     anim_background_pokeball,
     anim_pokeball_fade_in,
     anim_pokeball_fade_out,
-    anim_background_red
+    anim_background_red,
+    anim_background_bands
 };

@@ -17,10 +17,24 @@ bool anim_background_red(anim_object_t &object, anim_param_t &param)
         Background::CreateTile4(ColorNumber::COLOR_0, 0, 0);
         Background::CreateTile4(ColorNumber::COLOR_1, 0, 1);
         Background::CreateTile4(ColorNumber::COLOR_2, 0, 2);
-        Background::CreateTileMap16(1, 15, 6, 0x280);
+        Background::CreateTileMap16(1, 15, 6, 0, 0x280);
         param.init = true;
         return false;
     }
-    LCD.DISPCNT |= 1 << (8 + 2);
+    //LCD.DISPCNT |= 1 << (8 + 2);
+    return true;
+}
+
+bool anim_background_bands(anim_object_t &object, anim_param_t &param)
+{
+    if (!param.init)
+    {
+        Background::CreateTileMap16(2, 15, 7, 0, 0x80);
+        Background::CreateTileMap16(0, 15, 7, 4, 0x180);
+        Background::CreateTileMap16(2, 15, 7, 16, 0x80);
+        param.init = true;
+        return false;
+    }
+    LCD.DISPCNT |= 1 << (8 + 0);
     return true;
 }

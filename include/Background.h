@@ -59,7 +59,7 @@ class Background
     static void CreateTile4(ColorNumber colorNumber, int charBlock, int tileNumber);
     static void LoadTile8(const char* tileName, int charBlock, int tileNumber);
     static void LoadTileMap(const char* tileMapName, int screenBlock, int entryNumber);
-    static void CreateTileMap16(unsigned int tileNum, unsigned int paletteNum, int screenBlock, int size);
+    static void CreateTileMap16(unsigned int tileNum, unsigned int paletteNum, int screenBlock, int lineNum, int size);
     static void AffineSet(BGAffineSource &source, AffineBG background);
 };
 

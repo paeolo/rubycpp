@@ -21,6 +21,6 @@
         "POKEBALL_SPIN",
         { "anim": 19, "begin": 100},
         { "anim": 20, "begin": 100},
-        { "anim": 21, "begin": 140, "endScene": true}
+        { "anim": 21, "begin": 142, "endScene": true}
     ]
 }

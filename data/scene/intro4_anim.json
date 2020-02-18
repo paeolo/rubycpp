@@ -18,11 +18,13 @@
     [
         "RESET",
         {"reset": true},
+        {"position": 0, "priority": 0, "char": 0, "map": 7, "hidden": true },
         {"position": 2, "priority": 3, "char": 0, "map": 6, "hidden": true }
     ],
     "animation":
     [
         "BACKGROUND RED",
-        { "anim": 22, "begin": 10}
+        { "anim": 22, "begin": 1},
+        { "anim": 23, "begin": 20}
     ]
 }
