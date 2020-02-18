@@ -2,6 +2,7 @@
 #include "anim_intro1.h"
 #include "anim_intro2.h"
 #include "anim_intro3.h"
+#include "anim_intro4.h"
 
 const anim_t anim[] =
 {
@@ -26,5 +27,6 @@ const anim_t anim[] =
     anim_fade,
     anim_background_pokeball,
     anim_pokeball_fade_in,
-    anim_pokeball_fade_out
+    anim_pokeball_fade_out,
+    anim_plip_ploup
 };

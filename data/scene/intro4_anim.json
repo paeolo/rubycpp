@@ -1,0 +1,27 @@
+{
+    "palette":
+    [
+        "BACKGROUND",
+        {"file": "intro4_streaks", "position": 0},
+        "OBJECT",
+        {"file": "intro4_misc1", "tag": 0},
+        {"file": "intro4_misc2", "tag": 1}
+    ],
+    "tile":
+    [
+        "BACKGROUND",
+        {"file": "intro4_streaks", "char": 1},
+        "OBJECT",
+        {"file": "intro4_misc", "tag": 0}
+    ],
+    "background":
+    [
+        "RESET",
+        {"reset": true}
+    ],
+    "animation":
+    [
+        "PLIP PLOUP",
+        { "anim": 22, "begin": 0}
+    ]
+}
