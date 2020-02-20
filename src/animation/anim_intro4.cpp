@@ -51,35 +51,72 @@ bool anim_background_bands(anim_object_t &object, anim_param_t &param)
     return false;
 }
 
-bool anim_duskull(anim_object_t &object, anim_param_t &param)
+bool anim_sharpedo(anim_object_t &object, anim_param_t &param)
 {
     if (!param.init)
     {
-        SPRITE->activate();
-        SPRITE->setShape(SQUARE, SIZE_64, AFFINE_DISABLE);
+        SPRITE->setShape(SQUARE, SIZE_64, AFFINE_DOUBLE);
+        SPRITE->rotate(Fixed(1.0), Fixed(1.0), 0);
         SPRITE->pos1.x = 240;
         SPRITE->pos1.y = 160;
+        SPRITE->activate();
         param.init = true;
     }
     if (param.count <= 15)
     {
-        SPRITE->pos2.x -= 2;
-        SPRITE->pos2.y -= 4;
+        SPRITE->pos1.x -= 2;
+        SPRITE->pos1.y -= 4;
+    }
+    else if (param.count >= 30)
+    {
+        SPRITE->pos2.y = - (param.rho * param.rho) >> 3;
+        SPRITE->pos2.x -= param.rho;
+        s16 i = 256 - param.lambda[0];
+        SPRITE->rotate(Fixed::fromRaw(i), Fixed::fromRaw(i), 0);
+        if (param.lambda[0] < 128)
+            param.lambda[0]+= 8;
+        ++param.rho;
+    }
+    if (SPRITE->pos2.x <= -300)
+    {
+        delete SPRITE;
+        return true;
     }
     ++param.count;
     return false;
 }
 
-bool anim_sharpedo(anim_object_t &object, anim_param_t &param)
+bool anim_duskull(anim_object_t &object, anim_param_t &param)
 {
     if (!param.init)
     {
-        SPRITE->activate();
-        SPRITE->setShape(SQUARE, SIZE_64, AFFINE_DISABLE);
-        SPRITE->pos1.x = 240;
+        SPRITE->setShape(SQUARE, SIZE_64, AFFINE_DOUBLE);
+        SPRITE->rotate(Fixed(-1.0), Fixed(1.0), 0);
+        SPRITE->pos1.x = 0;
         SPRITE->pos1.y = 160;
+        SPRITE->activate();
         param.init = true;
-        return false;
     }
-    return true;
+    if (param.count <= 15)
+    {
+        SPRITE->pos1.x += 2;
+        SPRITE->pos1.y -= 4;
+    }
+    else if (param.count >= 30)
+    {
+        SPRITE->pos2.y = - (param.rho * param.rho) >> 3;
+        SPRITE->pos2.x += param.rho;
+        s16 i = 256 - param.lambda[0];
+        SPRITE->rotate(Fixed::fromRaw(-i), Fixed::fromRaw(i), 0);
+        if (param.lambda[0] < 128)
+            param.lambda[0]+= 8;
+        ++param.rho;
+    }
+    if (SPRITE->pos2.x >= 300)
+    {
+        delete SPRITE;
+        return true;
+    }
+    ++param.count;
+    return false;
 }

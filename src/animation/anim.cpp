@@ -30,6 +30,6 @@ const anim_t anim[] =
     anim_pokeball_fade_out,
     anim_background_red,
     anim_background_bands,
-    anim_duskull,
-    anim_sharpedo
+    anim_sharpedo,
+    anim_duskull
 };

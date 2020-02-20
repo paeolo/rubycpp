@@ -6,8 +6,8 @@
         "OBJECT",
         {"file": "intro4_misc1", "tag": 0},
         {"file": "intro4_misc2", "tag": 1},
-        {"file": "duskull", "tag": 10},
-        {"file": "sharpedo", "tag": 11}
+        {"file": "sharpedo", "tag": 10},
+        {"file": "duskull", "tag": 11}
     ],
     "tile":
     [
@@ -15,8 +15,8 @@
         {"file": "intro4_streaks", "char": 1},
         "OBJECT",
         {"file": "intro4_misc", "tag": 0},
-        {"file": "duskull", "tag": 10},
-        {"file": "sharpedo", "tag": 11}
+        {"file": "sharpedo", "tag": 10},
+        {"file": "duskull", "tag": 11}
     ],
     "background":
     [
@@ -36,6 +36,7 @@
         "BACKGROUND RED",
         { "anim": 22, "begin": 1},
         { "anim": 23, "begin": 2},
-        { "anim": 24, "begin": 60, "sprite": 10}
+        { "anim": 24, "begin": 15, "sprite": 10},
+        { "anim": 25, "delay": 85, "sprite": 11}
     ]
 }
