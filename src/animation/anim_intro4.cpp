@@ -50,3 +50,36 @@ bool anim_background_bands(anim_object_t &object, anim_param_t &param)
     ++param.count;
     return false;
 }
+
+bool anim_duskull(anim_object_t &object, anim_param_t &param)
+{
+    if (!param.init)
+    {
+        SPRITE->activate();
+        SPRITE->setShape(SQUARE, SIZE_64, AFFINE_DISABLE);
+        SPRITE->pos1.x = 240;
+        SPRITE->pos1.y = 160;
+        param.init = true;
+    }
+    if (param.count <= 15)
+    {
+        SPRITE->pos2.x -= 2;
+        SPRITE->pos2.y -= 4;
+    }
+    ++param.count;
+    return false;
+}
+
+bool anim_sharpedo(anim_object_t &object, anim_param_t &param)
+{
+    if (!param.init)
+    {
+        SPRITE->activate();
+        SPRITE->setShape(SQUARE, SIZE_64, AFFINE_DISABLE);
+        SPRITE->pos1.x = 240;
+        SPRITE->pos1.y = 160;
+        param.init = true;
+        return false;
+    }
+    return true;
+}

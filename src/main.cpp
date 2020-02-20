@@ -18,8 +18,8 @@ void introTask()
 	//engine.pushScene(new SceneAnimation("intro1_anim"));
 	//engine.pushScene(new SceneWait(80));
 	//engine.pushScene(new SceneFade(nullptr, BLANK, FadeType::REVERSE));
-	engine.pushScene(new SceneAnimation("intro2_anim"));
-	engine.pushScene(new SceneAnimation("intro3_anim"));
+	//engine.pushScene(new SceneAnimation("intro2_anim"));
+	//engine.pushScene(new SceneAnimation("intro3_anim"));
 	engine.pushScene(new SceneAnimation("intro4_anim"));
 }
 

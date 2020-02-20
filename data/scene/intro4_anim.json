@@ -5,14 +5,18 @@
         {"file": "intro4_streaks", "position": 0},
         "OBJECT",
         {"file": "intro4_misc1", "tag": 0},
-        {"file": "intro4_misc2", "tag": 1}
+        {"file": "intro4_misc2", "tag": 1},
+        {"file": "duskull", "tag": 10},
+        {"file": "sharpedo", "tag": 11}
     ],
     "tile":
     [
         "BACKGROUND",
         {"file": "intro4_streaks", "char": 1},
         "OBJECT",
-        {"file": "intro4_misc", "tag": 0}
+        {"file": "intro4_misc", "tag": 0},
+        {"file": "duskull", "tag": 10},
+        {"file": "sharpedo", "tag": 11}
     ],
     "background":
     [
@@ -21,10 +25,17 @@
         {"position": 0, "priority": 0, "char": 0, "map": 7, "hidden": true },
         {"position": 2, "priority": 3, "char": 0, "map": 6, "hidden": true }
     ],
+    "sprite":
+    [
+        "POKEMONS",
+        {"tag": 10, "palette": 10, "tile": 10, "tileoffset": 0, "priority": 1},
+        {"tag": 11, "palette": 11, "tile": 11, "tileoffset": 0, "priority": 1}
+    ],
     "animation":
     [
         "BACKGROUND RED",
         { "anim": 22, "begin": 1},
-        { "anim": 23, "begin": 2}
+        { "anim": 23, "begin": 2},
+        { "anim": 24, "begin": 60, "sprite": 10}
     ]
 }
