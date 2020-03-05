@@ -7,6 +7,16 @@
 #include "Sprite.h"
 #include "trig.h"
 
+#include "mgba.h"
+
+static const CMDAnim may_launch[] =
+{
+    CMD_FRAME(0, 0),
+    CMD_FRAME(64, 8),
+    CMD_FRAME(128, 0),
+    CMD_END
+};
+
 bool anim_background_red(anim_object_t &object, anim_param_t &param)
 {
     if (!param.init)
@@ -21,7 +31,7 @@ bool anim_background_red(anim_object_t &object, anim_param_t &param)
         param.init = true;
         return false;
     }
-    LCD.DISPCNT |= 1 << (8 + 2);
+    LCD.DISPCNT |= 1 << (8 + 3);
     return true;
 }
 
@@ -35,15 +45,13 @@ bool anim_background_bands(anim_object_t &object, anim_param_t &param)
         LCD.WIN0H = 240;
         LCD.WIN0V = 160;
         LCD.DISPCNT |= DISPCNT::WIN0_ON;
-        LCD.WININ |= WIN::WIN0_BG2
-        | WIN::WIN0_BG3 
-        | WIN::WIN0_OBJ;
+        LCD.WININ |= WIN::WIN0_BG2 | WIN::WIN0_BG3 | WIN::WIN0_OBJ;
         LCD.WINOUT = WIN::WIN0_BG0;
         LCD.DISPCNT |= 1 << (8 + 0);
         param.init = true;
     }
-    
-    LCD.WIN0V = (160 - 4*param.count) + ((4*param.count) << 8);
+
+    LCD.WIN0V = (160 - 4 * param.count) + ((4 * param.count) << 8);
 
     if (param.count == 8)
         return true;
@@ -69,12 +77,12 @@ bool anim_sharpedo(anim_object_t &object, anim_param_t &param)
     }
     else if (param.count >= 30)
     {
-        SPRITE->pos2.y = - (param.rho * param.rho) >> 3;
+        SPRITE->pos2.y = -(param.rho * param.rho) >> 3;
         SPRITE->pos2.x -= param.rho;
         s16 i = 256 - param.lambda[0];
         SPRITE->rotate(Fixed::fromRaw(i), Fixed::fromRaw(i), 0);
         if (param.lambda[0] < 128)
-            param.lambda[0]+= 8;
+            param.lambda[0] += 8;
         ++param.rho;
     }
     if (SPRITE->pos2.x <= -300)
@@ -104,12 +112,12 @@ bool anim_duskull(anim_object_t &object, anim_param_t &param)
     }
     else if (param.count >= 30)
     {
-        SPRITE->pos2.y = - (param.rho * param.rho) >> 3;
+        SPRITE->pos2.y = -(param.rho * param.rho) >> 3;
         SPRITE->pos2.x += param.rho;
         s16 i = 256 - param.lambda[0];
         SPRITE->rotate(Fixed::fromRaw(-i), Fixed::fromRaw(i), 0);
         if (param.lambda[0] < 128)
-            param.lambda[0]+= 8;
+            param.lambda[0] += 8;
         ++param.rho;
     }
     if (SPRITE->pos2.x >= 300)
@@ -119,4 +127,98 @@ bool anim_duskull(anim_object_t &object, anim_param_t &param)
     }
     ++param.count;
     return false;
+}
+
+bool anim_may_ready(anim_object_t &object, anim_param_t &param)
+{
+    if (!param.init)
+    {
+        SPRITE->setShape(SQUARE, SIZE_64, AFFINE_DISABLE);
+        SPRITE->pos1.x = 280;
+        SPRITE->pos1.y = 96;
+        SPRITE->activate();
+        Palette::buffer[241] = RGB(22, 31, 15);
+        param.init = true;
+    }
+    SPRITE->pos2.x -= 4;
+
+    if (SPRITE->pos2.x <= - 240)
+    {
+        SPRITE->tileOffset = 0;
+        return true;
+    }
+    ++param.count;
+    return false;
+}
+
+bool anim_may_launch(anim_object_t &object, anim_param_t &param)
+{
+    if (!param.init)
+    {
+        SPRITE->start(may_launch);
+        param.init = true;
+        return false;
+    }
+    if ( SPRITE->pos2.y <=  50)
+    {
+        --SPRITE->pos2.x;
+        SPRITE->pos2.y += 2;
+    }
+    else
+    {
+        delete SPRITE;
+        return true;
+    }
+    return false;
+}
+
+bool anim_background_streaks(anim_object_t &object, anim_param_t &param)
+{
+    if (!param.init)
+    {
+        for (int i= 0; i < 0x10; ++i)
+            Palette::data[i] = Palette::buffer[i];
+
+        param.rho = 9;
+        param.count = 0;
+        param.lambda[0] = 0;
+
+        BGOFS[2].x = 0;
+        BGOFS[2].y = 0;
+        LCD.DISPCNT |= 1 << (8 + 2);
+        param.init = true;
+    }
+
+    if ((param.count & 7) == 0)
+    {
+        --param.rho;
+        for (int i= 0; i < 0x10; ++i)
+            Palette::buffer[i] = Color::centroid(
+                RGB(23, 31, 13),
+                Palette::data[i],
+                (param.rho << 2)
+            );
+    }
+
+    BGOFS[2].x = param.lambda[0];
+    BGOFS[2].y =  - param.lambda[0];
+    param.lambda[0] += param.rho;
+     
+    if (param.rho == 0)
+        return true;
+
+    ++param.count;
+    return false;
+}
+
+bool anim_pokeball_launch(anim_object_t &object, anim_param_t &param)
+{
+    if (!param.init)
+    {
+        SPRITE->setShape(SQUARE, SIZE_16, AFFINE_ENABLE);
+        SPRITE->rotate(Fixed(1.0), Fixed(1.0), 0);
+        SPRITE->activate();
+        param.init = true;
+    }
+    return true;
 }

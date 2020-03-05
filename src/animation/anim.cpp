@@ -31,5 +31,9 @@ const anim_t anim[] =
     anim_background_red,
     anim_background_bands,
     anim_sharpedo,
-    anim_duskull
+    anim_duskull,
+    anim_may_ready,
+    anim_may_launch,
+    anim_background_streaks,
+    anim_pokeball_launch
 };

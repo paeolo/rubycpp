@@ -6,8 +6,10 @@
         "OBJECT",
         {"file": "intro4_misc1", "tag": 0},
         {"file": "intro4_misc2", "tag": 1},
+        {"file": "pokeball", "tag": 2},
         {"file": "sharpedo", "tag": 10},
-        {"file": "duskull", "tag": 11}
+        {"file": "duskull", "tag": 11},
+        {"file": "intro4_may", "tag": 12}
     ],
     "tile":
     [
@@ -15,28 +17,45 @@
         {"file": "intro4_streaks", "char": 1},
         "OBJECT",
         {"file": "intro4_misc", "tag": 0},
+        {"file": "pokeball", "tag": 1},
         {"file": "sharpedo", "tag": 10},
-        {"file": "duskull", "tag": 11}
+        {"file": "duskull", "tag": 11},
+        {"file": "intro4_may", "tag": 12}
     ],
     "background":
     [
         "RESET",
         {"reset": true},
         {"position": 0, "priority": 0, "char": 0, "map": 7, "hidden": true },
-        {"position": 2, "priority": 3, "char": 0, "map": 6, "hidden": true }
+        {"position": 3, "priority": 3, "char": 0, "map": 6, "hidden": true },
+        {"position": 2, "file": "intro4_streaks", "priority": 3, "char": 1, "map": 10, "hidden": true }
     ],
     "sprite":
     [
         "POKEMONS",
         {"tag": 10, "palette": 10, "tile": 10, "tileoffset": 0, "priority": 1},
-        {"tag": 11, "palette": 11, "tile": 11, "tileoffset": 0, "priority": 1}
+        {"tag": 11, "palette": 11, "tile": 11, "tileoffset": 0, "priority": 1},
+        {"tag": 12, "palette": 12, "tile": 12, "tileoffset": 192, "priority": 1},
+        "POKEBALL",
+        {"tag": 0, "palette": 2, "tile": 1, "tileoffset": 0, "priority": 1, "x": 16, "y": 104},
+        {"tag": 1, "palette": 2, "tile": 1, "tileoffset": 0, "priority": 1, "x": 12, "y": 106}
     ],
     "animation":
     [
         "BACKGROUND RED",
         { "anim": 22, "begin": 1},
         { "anim": 23, "begin": 2},
+        "SHARPEDO",
         { "anim": 24, "begin": 15, "sprite": 10},
-        { "anim": 25, "delay": 85, "sprite": 11}
+        "DUSKULL",
+        { "anim": 25, "delay": 85, "sprite": 11},
+        "MAY APPEAR",
+        { "anim": 26, "delay": 85, "sprite": 12},
+        "STREAKS",
+        { "anim": 28, "delay": 85 },
+        "POKEBALL GO!",
+        { "anim": 27, "delay": 1, "sprite": 12},
+        { "anim": 29, "delay": 1, "sprite": 0},
+        { "anim": 29, "delay": 1, "sprite": 1}
     ]
 }

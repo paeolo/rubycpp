@@ -141,7 +141,7 @@ void SceneAnimation::init_Animation(Parser &p, Animation* &previous)
     if(p.value(ANIM_PREMPT))
         animation->previous = previous;
 
-    if(p.value(ANIM_NEXT) || p.value(ANIM_DELAY) > 0)
+    if(p.value(ANIM_NEXT) ||  p.value(ANIM_DELAY) > 0)
     {
         previous->next = animation;
         previous->delay = p.value(ANIM_DELAY);
