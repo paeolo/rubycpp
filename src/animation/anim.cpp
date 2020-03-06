@@ -33,6 +33,7 @@ const anim_t anim[] =
     anim_sharpedo,
     anim_duskull,
     anim_may_ready,
+    anim_pokeball_appear,
     anim_may_launch,
     anim_background_streaks,
     anim_pokeball_launch

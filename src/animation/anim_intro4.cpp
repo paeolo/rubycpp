@@ -151,6 +151,17 @@ bool anim_may_ready(anim_object_t &object, anim_param_t &param)
     return false;
 }
 
+bool anim_pokeball_appear(anim_object_t &object, anim_param_t &param)
+{
+    if (!param.init)
+    {
+        SPRITE->setShape(SQUARE, SIZE_16, AFFINE_ENABLE);
+        SPRITE->rotate(Fixed(1.0), Fixed(1.0), 0);
+        SPRITE->activate();
+        return true;
+    }
+}
+
 bool anim_may_launch(anim_object_t &object, anim_param_t &param)
 {
     if (!param.init)
@@ -215,14 +226,38 @@ bool anim_pokeball_launch(anim_object_t &object, anim_param_t &param)
 {
     if (!param.init)
     {
-        SPRITE->setShape(SQUARE, SIZE_16, AFFINE_ENABLE);
-        SPRITE->rotate(Fixed(1.0), Fixed(1.0), 0);
-        SPRITE->activate();
+        param.lambda[0] = 36;
         param.init = true;
     }
-    SPRITE->pos1.x += 4;
-    SPRITE->pos1.y -= 1;
-    SPRITE->pos2.y = - 24 * Sin(param.theta);
+
+    if (param.rho == 0)
+    {
+        if (SPRITE->pos1.x <= 146)
+        {
+            SPRITE->pos1.x += 4;
+            SPRITE->pos1.y -= 1;
+            SPRITE->pos2.y = - 24 * Sin(param.theta);
+        }
+    }
+    else if (param.rho == 1)
+    {
+        if (SPRITE->pos1.x <= 98)
+        {
+            SPRITE->pos1.x += 3;
+            SPRITE->pos1.y -= 1;
+            SPRITE->pos2.y = - 24 * Sin(param.theta);
+        }
+    }
+    SPRITE->rotate(Fixed(1.0), Fixed(1.0), param.alpha);
+    param.alpha += param.lambda[0];
     param.theta += 4;
+
+    if ((param.count & 1) == 0)
+     --param.lambda[0];
+
+    if (param.lambda[0] == 0)
+        return true;
+        
+    ++param.count;
     return false;
 }
