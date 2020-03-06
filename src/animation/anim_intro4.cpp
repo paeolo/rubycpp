@@ -220,5 +220,9 @@ bool anim_pokeball_launch(anim_object_t &object, anim_param_t &param)
         SPRITE->activate();
         param.init = true;
     }
-    return true;
+    SPRITE->pos1.x += 4;
+    SPRITE->pos1.y -= 1;
+    SPRITE->pos2.y = - 24 * Sin(param.theta);
+    param.theta += 4;
+    return false;
 }
