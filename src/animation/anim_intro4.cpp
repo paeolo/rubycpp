@@ -233,18 +233,12 @@ bool anim_pokeball_launch(anim_object_t &object, anim_param_t &param)
         param.init = true;
     }
 
-    if (GROUP->sprite[0]->pos1.x <= 146)
+    if (GROUP->pos1.x <= 110)
     {
-        GROUP->sprite[0]->pos1.x += 4;
-        GROUP->sprite[0]->pos1.y -= 1;
-        GROUP->sprite[0]->pos2.y = - 24 * Sin(param.theta);
-    }
-
-    if (GROUP->sprite[1]->pos1.x <= 98)
-    {
-        GROUP->sprite[1]->pos1.x += 3;
-        GROUP->sprite[1]->pos1.y -= 1;
-        GROUP->sprite[1]->pos2.y = - 24 * Sin(param.theta);
+        GROUP->pos1.x += 3;
+        GROUP->pos1.y -= 1;
+        ++GROUP->sprite[0]->pos1.x;
+        GROUP->pos2.y = - 24 * Sin(param.theta);
     }
 
     GROUP->sprite[0]->rotate(Fixed(1.0), Fixed(1.0), param.alpha);
