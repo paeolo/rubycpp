@@ -30,15 +30,20 @@
         {"position": 3, "priority": 3, "char": 0, "map": 6, "hidden": true },
         {"position": 2, "file": "intro4_streaks", "priority": 3, "char": 1, "map": 10, "hidden": true }
     ],
+    "group":
+    [
+        "POKEBALLS",
+        {"tag": 0, "x": 12, "y": 104}
+    ],
     "sprite":
     [
         "POKEMONS",
         {"tag": 10, "palette": 10, "tile": 10, "tileoffset": 0, "priority": 1},
         {"tag": 11, "palette": 11, "tile": 11, "tileoffset": 0, "priority": 1},
         {"tag": 12, "palette": 12, "tile": 12, "tileoffset": 192, "priority": 1},
-        "POKEBALL",
-        {"tag": 0, "palette": 2, "tile": 1, "tileoffset": 0, "priority": 1, "x": 16, "y": 104},
-        {"tag": 1, "palette": 2, "tile": 1, "tileoffset": 0, "priority": 1, "x": 12, "y": 106}
+        "POKEBALLS",
+        {"group": 0, "palette": 2, "tile": 1, "tileoffset": 0, "priority": 1, "x": 4, "y": 0},
+        {"group": 0, "palette": 2, "tile": 1, "tileoffset": 0, "priority": 1, "x": 0, "y": 2}
     ],
     "animation":
     [
@@ -51,13 +56,11 @@
         { "anim": 25, "delay": 85, "sprite": 11},
         "MAY APPEAR",
         { "anim": 26, "delay": 85, "sprite": 12},
-        { "anim": 27, "next": true, "sprite": 0},
-        { "anim": 27, "next": true, "sprite": 1},
+        { "anim": 27, "next": true, "group": 0},
         "STREAKS",
         { "anim": 29, "delay": 20 },
         "POKEBALL GO!",
         { "anim": 28, "delay": 1, "sprite": 12},
-        { "anim": 30, "delay": 1, "parameter": 0, "sprite": 0},
-        { "anim": 30, "delay": 1, "parameter": 1, "sprite": 1}
+        { "anim": 30, "delay": 1, "group": 0}
     ]
 }

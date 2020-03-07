@@ -155,9 +155,12 @@ bool anim_pokeball_appear(anim_object_t &object, anim_param_t &param)
 {
     if (!param.init)
     {
-        SPRITE->setShape(SQUARE, SIZE_16, AFFINE_ENABLE);
-        SPRITE->rotate(Fixed(1.0), Fixed(1.0), 0);
-        SPRITE->activate();
+        GROUP->mode = GroupMode::OFFSET;
+        GROUP->sprite[0]->setShape(SQUARE, SIZE_16, AFFINE_ENABLE);
+        GROUP->sprite[1]->setShape(SQUARE, SIZE_16, AFFINE_ENABLE);
+        GROUP->sprite[0]->rotate(Fixed(1.0), Fixed(1.0), 0);
+        GROUP->sprite[1]->rotate(Fixed(1.0), Fixed(1.0), 0);
+        GROUP->activate();
         return true;
     }
 }
@@ -230,25 +233,22 @@ bool anim_pokeball_launch(anim_object_t &object, anim_param_t &param)
         param.init = true;
     }
 
-    if (param.rho == 0)
+    if (GROUP->sprite[0]->pos1.x <= 146)
     {
-        if (SPRITE->pos1.x <= 146)
-        {
-            SPRITE->pos1.x += 4;
-            SPRITE->pos1.y -= 1;
-            SPRITE->pos2.y = - 24 * Sin(param.theta);
-        }
+        GROUP->sprite[0]->pos1.x += 4;
+        GROUP->sprite[0]->pos1.y -= 1;
+        GROUP->sprite[0]->pos2.y = - 24 * Sin(param.theta);
     }
-    else if (param.rho == 1)
+
+    if (GROUP->sprite[1]->pos1.x <= 98)
     {
-        if (SPRITE->pos1.x <= 98)
-        {
-            SPRITE->pos1.x += 3;
-            SPRITE->pos1.y -= 1;
-            SPRITE->pos2.y = - 24 * Sin(param.theta);
-        }
+        GROUP->sprite[1]->pos1.x += 3;
+        GROUP->sprite[1]->pos1.y -= 1;
+        GROUP->sprite[1]->pos2.y = - 24 * Sin(param.theta);
     }
-    SPRITE->rotate(Fixed(1.0), Fixed(1.0), param.alpha);
+
+    GROUP->sprite[0]->rotate(Fixed(1.0), Fixed(1.0), param.alpha);
+    GROUP->sprite[1]->rotate(Fixed(1.0), Fixed(1.0), param.alpha);
     param.alpha += param.lambda[0];
     param.theta += 4;
 
