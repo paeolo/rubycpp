@@ -12,14 +12,14 @@ EWRAM_DATA Engine engine;
 
 void introTask()
 {
-	//engine.pushScene(new SceneFade(nullptr, BLACK, FadeType::REVERSE));
-	//engine.pushScene(new SceneWait(20));
-	//engine.pushScene(new SceneFade("fade_intro1", BLACK, FadeType::NORMAL));
-	//engine.pushScene(new SceneAnimation("anim_intro1"));
-	//engine.pushScene(new SceneWait(80));
-	//engine.pushScene(new SceneFade(nullptr, BLANK, FadeType::REVERSE));
-	//engine.pushScene(new SceneAnimation("anim_intro2"));
-	//engine.pushScene(new SceneAnimation("anim_intro3"));
+	engine.pushScene(new SceneFade(nullptr, BLACK, FadeType::REVERSE));
+	engine.pushScene(new SceneWait(20));
+	engine.pushScene(new SceneFade("fade_intro1", BLACK, FadeType::NORMAL));
+	engine.pushScene(new SceneAnimation("anim_intro1"));
+	engine.pushScene(new SceneWait(80));
+	engine.pushScene(new SceneFade(nullptr, BLANK, FadeType::REVERSE));
+	engine.pushScene(new SceneAnimation("anim_intro2"));
+	engine.pushScene(new SceneAnimation("anim_intro3"));
 	engine.pushScene(new SceneAnimation("anim_intro4"));
 }
 
@@ -34,8 +34,8 @@ int main(void)
 	Engine::initOAM();
 	Engine::initInterrupt();
 
-	//engine.pushScene(new SceneFade("copyright", BLANK, FadeType::NORMAL));
-	engine.pushScene(new SceneWait(10, introTask));
+	engine.pushScene(new SceneFade("copyright", BLANK, FadeType::NORMAL));
+	engine.pushScene(new SceneWait(120, introTask));
 	engine.popScene();
 		
 	while(true)
