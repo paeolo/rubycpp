@@ -36,7 +36,8 @@
         "POKEBALLS",
         {"tag": 0, "x": 12, "y": 104},
         "STARS 1",
-        {"tag": 1, "x": 148, "y": 72}
+        {"tag": 1, "x": 148, "y": 72},
+        {"tag": 2, "x": 105, "y": 70}
     ],
     "sprite":
     [
@@ -55,7 +56,16 @@
         {"group": 1, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1},
         {"group": 1, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1},
         {"group": 1, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1},
-        {"group": 1, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1}
+        {"group": 1, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1},
+        "STARS 2",
+        {"group": 2, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1},
+        {"group": 2, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1},
+        {"group": 2, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1},
+        {"group": 2, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1},
+        {"group": 2, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1},
+        {"group": 2, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1},
+        {"group": 2, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1},
+        {"group": 2, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1}
     ],
     "animation":
     [
@@ -75,6 +85,7 @@
         { "anim": 28, "delay": 1, "sprite": 12},
         { "anim": 30, "delay": 1, "group": 0},
         "POKEMONS APPEAR",
-        { "anim": 31, "next": true, "group": 1}
+        { "anim": 31, "next": true, "group": 1},
+        { "anim": 31, "delay": 1, "group": 2}
     ]
 }

@@ -272,32 +272,34 @@ bool anim_pokeball_stars(anim_object_t &object, anim_param_t &param)
             GROUP->sprite[i]->setShape(SQUARE, SIZE_8, AFFINE_DISABLE);
         GROUP->mode = GroupMode::OFFSET;
         GROUP->activate();
-        param.lambda[0] = 4;
         param.init = true;
     }
-    if ((param.count & 7) == 0)
+
+    for (int i = 0; i < 8; ++i)
     {
-        for (int i = 0; i < 8; ++i)
-        {
-            GROUP->sprite[i]->pos1.x = param.rho * Cos(32 * i);
-            GROUP->sprite[i]->pos1.y = param.rho * Sin(32 * i);
-        }
+        GROUP->sprite[i]->pos1.x = param.rho * Cos(32 * i);
+        GROUP->sprite[i]->pos1.y = param.rho * Sin(32 * i);
     }
+
     if ((param.count & 1) == 0)
     {
-        GROUP->visible = false;
-        param.rho += param.lambda[0];
+        GROUP->visible = true;
+        if (param.count <= 10)
+            param.rho += 4;
+        else if (param.count > 10 && param.count <= 20)
+            param.rho += 3;
+        else if (param.count > 20 && param.count <= 22)
+            param.rho += 2;
+        else if (param.count > 22 && param.count <= 24)
+            param.rho += 1;
+        else if (param.count > 26)
+        {
+            delete GROUP;
+            return true;
+        }
     }
     else
-    {
-        GROUP->visible = true;
-    }
-    
-    if (param.lambda[0] >= 1 && ((param.count & 7) == 0))
-        --param.lambda[0];
-
-    if (param.rho >= 40)
-        return true;
+        GROUP->visible = false;
 
     ++param.count;
     return false;
