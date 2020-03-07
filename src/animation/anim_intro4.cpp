@@ -292,7 +292,7 @@ bool anim_pokeball_stars(anim_object_t &object, anim_param_t &param)
             param.rho += 2;
         else if (param.count > 22 && param.count <= 24)
             param.rho += 1;
-        else if (param.count > 26)
+        else if (param.count > 28)
         {
             delete GROUP;
             return true;
@@ -307,12 +307,50 @@ bool anim_pokeball_stars(anim_object_t &object, anim_param_t &param)
 
 bool anim_pokemon_appear(anim_object_t &object, anim_param_t &param)
 {
+    int i0 = GROUP->sprite[0]->entry.paletteNum;
+    int i1 = GROUP->sprite[1]->entry.paletteNum;
+
     if (!param.init)
     {
-        SPRITE->setShape(SQUARE, SIZE_64, AFFINE_ENABLE);
-        SPRITE->rotate(Fixed(-4.0), Fixed(4.0), 0);
-        SPRITE->activate();
+        GROUP->sprite[0]->setShape(SQUARE, SIZE_64, AFFINE_ENABLE);
+        GROUP->sprite[1]->setShape(SQUARE, SIZE_64, AFFINE_ENABLE);
+        GROUP->mode = GroupMode::OFFSET;
+        GROUP->activate();
+
+        for (int i = 0; i < 0x10; ++i)
+        {
+            Palette::data[256 + 16 * i0 + i] = Palette::buffer[256 + 16 * i0 + i];
+            Palette::buffer[256 + 16 * i0 + i] = RGB(31, 23, 31);
+            Palette::data[256 + 16 * i1 + i] = Palette::buffer[256 + 16 * i1 + i];
+            Palette::buffer[256 + 16 * i1 + i] = RGB(31, 23, 31);
+        }
+
+        param.gamma = Fixed(8.0);
         param.init = true;
     }
-    return true;
+
+    GROUP->sprite[0]->rotate(-1 * param.gamma, param.gamma, 0);
+    GROUP->sprite[1]->rotate(param.gamma, param.gamma, 0);
+
+    if (param.gamma > Fixed(1.0))
+        param.gamma = param.gamma - Fixed(0.5);
+
+    if (param.count >= 14 && param.count <= 30)
+    {
+        for (int i = 0; i < 0x10; ++i)
+        {
+            Palette::buffer[256 + 16 * i0 + i] = Color::centroid(
+                RGB(31, 23, 31),
+                Palette::data[256 + 16 * i0 + i],
+                (param.rho << 1));
+            Palette::buffer[256 + 16 * i1 + i] = Color::centroid(
+                RGB(31, 23, 31),
+                Palette::data[256 + 16 * i1 + i],
+                (param.rho << 1));
+        }
+        ++param.rho;
+    }
+
+    ++param.count;
+    return false;
 }

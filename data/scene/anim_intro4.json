@@ -41,15 +41,17 @@
         {"tag": 0, "x": 12, "y": 104},
         "STARS 1",
         {"tag": 1, "x": 148, "y": 72},
-        {"tag": 2, "x": 105, "y": 70}
+        {"tag": 2, "x": 105, "y": 70},
+        "MUDKIP + TORCHIC",
+        {"tag": 3, "x": 105, "y": 70}
     ],
     "sprite":
     [
         "POKEMONS",
         {"tag": 10, "palette": 10, "tile": 10, "tileoffset": 0, "priority": 1},
         {"tag": 11, "palette": 11, "tile": 11, "tileoffset": 0, "priority": 1},
-        {"tag": 13, "palette": 13, "tile": 13, "tileoffset": 0, "priority": 1, "x": 148, "y": 72},
-        {"tag": 14, "palette": 14, "tile": 14, "tileoffset": 0, "priority": 1, "x": 105, "y": 70},
+        {"group": 3, "palette": 13, "tile": 13, "tileoffset": 0, "priority": 1, "x": 43, "y": 2},
+        {"group": 3, "palette": 14, "tile": 14, "tileoffset": 0, "priority": 1},
         "MAY",
         {"tag": 12, "palette": 12, "tile": 12, "tileoffset": 192, "priority": 1},
         "POKEBALLS",
@@ -95,7 +97,6 @@
         { "anim": 31, "next": true, "group": 1},
         { "anim": 31, "delay": 1, "group": 2},
         "POKEMON APPEAR",
-        { "anim": 32, "delay": 1, "sprite": 13},
-        { "anim": 32, "delay": 1, "sprite": 14}
+        { "anim": 32, "delay": 1, "group": 3}
     ]
 }
