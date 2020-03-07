@@ -18,6 +18,7 @@
         "OBJECT",
         {"file": "intro4_misc", "tag": 0},
         {"file": "pokeball", "tag": 1},
+        {"file": "intro4_star", "tag": 2},
         {"file": "sharpedo", "tag": 10},
         {"file": "duskull", "tag": 11},
         {"file": "intro4_may", "tag": 12}
@@ -33,7 +34,9 @@
     "group":
     [
         "POKEBALLS",
-        {"tag": 0, "x": 12, "y": 104}
+        {"tag": 0, "x": 12, "y": 104},
+        "STARS 1",
+        {"tag": 1, "x": 148, "y": 72}
     ],
     "sprite":
     [
@@ -43,7 +46,16 @@
         {"tag": 12, "palette": 12, "tile": 12, "tileoffset": 192, "priority": 1},
         "POKEBALLS",
         {"group": 0, "palette": 2, "tile": 1, "tileoffset": 0, "priority": 1, "x": 4, "y": 0},
-        {"group": 0, "palette": 2, "tile": 1, "tileoffset": 0, "priority": 1, "x": 0, "y": 2}
+        {"group": 0, "palette": 2, "tile": 1, "tileoffset": 0, "priority": 1, "x": 0, "y": 2},
+        "STARS 1",
+        {"group": 1, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1},
+        {"group": 1, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1},
+        {"group": 1, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1},
+        {"group": 1, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1},
+        {"group": 1, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1},
+        {"group": 1, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1},
+        {"group": 1, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1},
+        {"group": 1, "palette": 0, "tile": 2, "tileoffset": 1, "priority": 1}
     ],
     "animation":
     [
@@ -61,6 +73,8 @@
         { "anim": 29, "delay": 20 },
         "POKEBALL GO!",
         { "anim": 28, "delay": 1, "sprite": 12},
-        { "anim": 30, "delay": 1, "group": 0}
+        { "anim": 30, "delay": 1, "group": 0},
+        "POKEMONS APPEAR",
+        { "anim": 31, "next": true, "group": 1}
     ]
 }

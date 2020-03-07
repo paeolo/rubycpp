@@ -230,7 +230,6 @@ bool anim_pokeball_launch(anim_object_t &object, anim_param_t &param)
         param.rho = 36;
         param.init = true;
     }
-
     if (param.rho != 0)
     {
         if (GROUP->pos1.x <= 104)
@@ -253,13 +252,14 @@ bool anim_pokeball_launch(anim_object_t &object, anim_param_t &param)
         if ((param.count & 1) == 0)
             --param.rho;
     }
-
-    if (param.rho == 0)
+    else
     {
-        delete GROUP;
-        return true;
+        if (param.count >= 100)
+        {
+            delete GROUP;
+            return true;
+        }
     }
-
     ++param.count;
     return false;
 }
