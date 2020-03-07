@@ -233,11 +233,15 @@ bool anim_pokeball_launch(anim_object_t &object, anim_param_t &param)
         param.init = true;
     }
 
-    if (GROUP->pos1.x <= 110)
+    if (GROUP->pos1.x <= 104)
     {
         GROUP->pos1.x += 3;
         GROUP->pos1.y -= 1;
         ++GROUP->sprite[0]->pos1.x;
+        if ((param.count & 5) == 0)
+            ++GROUP->sprite[0]->pos1.x; 
+        if ((param.count & 7) == 0)
+            ++GROUP->sprite[0]->pos1.y;
         GROUP->pos2.y = - 24 * Sin(param.theta);
     }
 
