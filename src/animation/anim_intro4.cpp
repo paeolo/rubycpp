@@ -160,8 +160,8 @@ bool anim_pokeball_appear(anim_object_t &object, anim_param_t &param)
         GROUP->sprite[0]->rotate(Fixed(1.0), Fixed(1.0), 0);
         GROUP->sprite[1]->rotate(Fixed(1.0), Fixed(1.0), 0);
         GROUP->activate();
-        return true;
     }
+    return true;
 }
 
 bool anim_may_launch(anim_object_t &object, anim_param_t &param)
@@ -303,4 +303,16 @@ bool anim_pokeball_stars(anim_object_t &object, anim_param_t &param)
 
     ++param.count;
     return false;
+}
+
+bool anim_pokemon_appear(anim_object_t &object, anim_param_t &param)
+{
+    if (!param.init)
+    {
+        SPRITE->setShape(SQUARE, SIZE_64, AFFINE_ENABLE);
+        SPRITE->rotate(Fixed(-4.0), Fixed(4.0), 0);
+        SPRITE->activate();
+        param.init = true;
+    }
+    return true;
 }

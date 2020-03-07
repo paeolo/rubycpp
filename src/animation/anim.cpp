@@ -37,5 +37,6 @@ const anim_t anim[] =
     anim_may_launch,
     anim_background_streaks,
     anim_pokeball_launch,
-    anim_pokeball_stars
+    anim_pokeball_stars,
+    anim_pokemon_appear
 };
