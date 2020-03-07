@@ -103,7 +103,7 @@ class Sprite final : public Affine, public Sortable, public Animated
 		ObjectEntry entry = ObjectEntry();
 
 		void update();
-		void update(pos_t offset);
+		void update(pos_t offset, bool visible);
 		void scale(Fixed a, Fixed b);
 		void rotate(Fixed a, Fixed b, int theta);
 		void setShape(SpriteShape shape, SpriteSize size, AffineMode mode);

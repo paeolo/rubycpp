@@ -270,10 +270,35 @@ bool anim_pokeball_stars(anim_object_t &object, anim_param_t &param)
     {
         for (int i = 0; i < 8; ++i)
             GROUP->sprite[i]->setShape(SQUARE, SIZE_8, AFFINE_DISABLE);
-
         GROUP->mode = GroupMode::OFFSET;
         GROUP->activate();
+        param.lambda[0] = 4;
         param.init = true;
     }
-    return true;
+    if ((param.count & 7) == 0)
+    {
+        for (int i = 0; i < 8; ++i)
+        {
+            GROUP->sprite[i]->pos1.x = param.rho * Cos(32 * i);
+            GROUP->sprite[i]->pos1.y = param.rho * Sin(32 * i);
+        }
+    }
+    if ((param.count & 1) == 0)
+    {
+        GROUP->visible = false;
+        param.rho += param.lambda[0];
+    }
+    else
+    {
+        GROUP->visible = true;
+    }
+    
+    if (param.lambda[0] >= 1 && ((param.count & 7) == 0))
+        --param.lambda[0];
+
+    if (param.rho >= 40)
+        return true;
+
+    ++param.count;
+    return false;
 }

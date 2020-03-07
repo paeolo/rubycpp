@@ -23,7 +23,7 @@ void SpriteGroup::update()
     {
         case GroupMode::OFFSET:
             for(int i = 0; i < size; ++i)
-                this->sprite[i]->update(this->pos1 + this->pos2);
+                this->sprite[i]->update(this->pos1 + this->pos2, this->visible);
             break;
         default:
             for(int i = 0; i < size; ++i)

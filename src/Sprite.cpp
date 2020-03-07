@@ -72,12 +72,12 @@ Sprite::~Sprite()
 
 void Sprite::update()
 {
-    update({0, 0});
+    update({0, 0}, true);
 }
 
-void Sprite::update(pos_t offset)
+void Sprite::update(pos_t offset, bool visible)
 {
-    if (this->visible)
+    if (this->visible && visible)
     {
         this->routine();
         entry.tileNum = _tile + tileOffset;
